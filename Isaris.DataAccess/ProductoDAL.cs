@@ -50,6 +50,35 @@ namespace Isaris.DataAccess
 
         //    return track;
         //}
+        public static ProductoEntity Update(ProductoEntity prod)
+        {
+            using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
+            {
+                conn.Open();
+
+                string sql = @"UPDATE inventario SET  
+                                            nombre = @nombre, 
+                                            precio = @precio,
+                                            precioTerranova = @precioTerranova,
+                                            unidad = @unidad
+                                    WHERE codproducto = @idProd";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@nombre", prod.nombre);
+
+                cmd.Parameters.AddWithValue("@precio", prod.precioTerranova);
+                cmd.Parameters.AddWithValue("@unidad", prod.unidad);
+                cmd.Parameters.AddWithValue("@precioTerranova", prod.precioTerranova);
+                cmd.Parameters.AddWithValue("@idProd", prod.idProd);
+
+
+                cmd.ExecuteNonQuery();
+
+            }
+
+            return prod;
+        }
         public static ProductoEntity GetByName(string nombre,string campoPrecio)
         {
             ProductoEntity prod = new ProductoEntity();
@@ -70,7 +99,7 @@ namespace Isaris.DataAccess
                     prod.existencia = Convert.ToInt32(reader["existencia"]);
 
                     prod.unidad = Convert.ToString(reader["unidad"]);
-                    prod.precio = Convert.ToSingle(reader[campoPrecio]);
+                    prod.precioTerranova = Convert.ToSingle(reader[campoPrecio]);
                 }
             }
 
@@ -86,7 +115,7 @@ namespace Isaris.DataAccess
 
                 string sql = @"SELECT Count(*)
                                 FROM inventario 
-                                WHERE codcliente = @customerId";
+                                WHERE codproducto = @customerId";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("customerId", id);
@@ -108,7 +137,7 @@ namespace Isaris.DataAccess
 
                 cmd.Parameters.AddWithValue("@codprod", prod.idProd);
                 cmd.Parameters.AddWithValue("@nombre", prod.nombre);
-                cmd.Parameters.AddWithValue("@precio", prod.precio); 
+                cmd.Parameters.AddWithValue("@precio", prod.precioTerranova); 
                 
                 cmd.Parameters.AddWithValue("@existencia", prod.existencia);
                 cmd.Parameters.AddWithValue("@proveedor", prod.proveedor);

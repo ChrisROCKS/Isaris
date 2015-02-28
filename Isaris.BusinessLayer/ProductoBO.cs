@@ -31,8 +31,10 @@ namespace Isaris.Negocio
         }
         public static ProductoEntity Save(ProductoEntity prod)
         {
-            return ProductoDAL.Create(prod);
-
+            if (ProductoDAL.Exists(prod.idProd))
+                return ProductoDAL.Update(prod);
+            else
+                return ProductoDAL.Create(prod);
         }
     }
 

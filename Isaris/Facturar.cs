@@ -170,7 +170,7 @@ namespace Isaris
 
                         fila.Cells[0].Value = prod.idProd;
                         fila.Cells[1].Value = prod.nombre;
-                        fila.Cells[3].Value = prod.precio;
+                        fila.Cells[3].Value = prod.precioTerranova;
                         fila.Cells[4].Value = prod.unidad;
                         fila.Cells[6].Value = prod.existencia;
                     }

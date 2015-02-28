@@ -36,15 +36,13 @@
             this.txtPrecioTerranova = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.txtPrecio = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.txtCantidad = new MetroFramework.Controls.MetroTextBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox1.Location = new System.Drawing.Point(177, 134);
+            this.textBox1.Location = new System.Drawing.Point(177, 95);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(160, 23);
@@ -53,7 +51,7 @@
             // txtCodProd
             // 
             this.txtCodProd.Lines = new string[0];
-            this.txtCodProd.Location = new System.Drawing.Point(177, 93);
+            this.txtCodProd.Location = new System.Drawing.Point(177, 138);
             this.txtCodProd.MaxLength = 32767;
             this.txtCodProd.Name = "txtCodProd";
             this.txtCodProd.PasswordChar = '\0';
@@ -68,7 +66,7 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel1.Location = new System.Drawing.Point(23, 97);
+            this.metroLabel1.Location = new System.Drawing.Point(23, 142);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(62, 19);
             this.metroLabel1.Style = MetroFramework.MetroColorStyle.Red;
@@ -80,7 +78,7 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel2.Location = new System.Drawing.Point(23, 138);
+            this.metroLabel2.Location = new System.Drawing.Point(23, 99);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(69, 19);
             this.metroLabel2.Style = MetroFramework.MetroColorStyle.Red;
@@ -138,31 +136,6 @@
             this.txtPrecio.TabIndex = 9;
             this.txtPrecio.UseSelectable = true;
             // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel5.Location = new System.Drawing.Point(23, 287);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(73, 19);
-            this.metroLabel5.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroLabel5.TabIndex = 11;
-            this.metroLabel5.Text = "Cantidad:";
-            this.metroLabel5.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.Lines = new string[0];
-            this.txtCantidad.Location = new System.Drawing.Point(177, 283);
-            this.txtCantidad.MaxLength = 32767;
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.PasswordChar = '\0';
-            this.txtCantidad.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtCantidad.SelectedText = "";
-            this.txtCantidad.Size = new System.Drawing.Size(160, 23);
-            this.txtCantidad.TabIndex = 10;
-            this.txtCantidad.UseSelectable = true;
-            // 
             // metroButton1
             // 
             this.metroButton1.Location = new System.Drawing.Point(113, 348);
@@ -171,15 +144,14 @@
             this.metroButton1.TabIndex = 12;
             this.metroButton1.Text = "Guardar";
             this.metroButton1.UseSelectable = true;
+            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 415);
+            this.ClientSize = new System.Drawing.Size(433, 415);
             this.Controls.Add(this.metroButton1);
-            this.Controls.Add(this.metroLabel5);
-            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.txtPrecioTerranova);
@@ -205,8 +177,6 @@
         private MetroFramework.Controls.MetroTextBox txtPrecioTerranova;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroTextBox txtPrecio;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroTextBox txtCantidad;
         private MetroFramework.Controls.MetroButton metroButton1;
 
     }

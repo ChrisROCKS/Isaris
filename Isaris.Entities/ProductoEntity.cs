@@ -15,6 +15,7 @@ namespace Isaris.Entities
 
         public string unidad { get; set; }
         public double precio { get; set; }
+        public double precioTerranova { get; set; }
         //private bool disposed = false;
 
         //Implement IDisposable.
