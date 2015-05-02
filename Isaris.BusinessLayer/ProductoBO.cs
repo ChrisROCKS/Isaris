@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Isaris.DataAccess;
 using Isaris.Entities;
-//using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace Isaris.Negocio
 {
@@ -29,12 +29,22 @@ namespace Isaris.Negocio
         {
             ProductoDAL.UpdateStock(idProd, Quantity);
         }
-        public static ProductoEntity Save(ProductoEntity prod)
+        public static void Save(ProductoEntity prod)
         {
             if (ProductoDAL.Exists(prod.idProd))
-                return ProductoDAL.Update(prod);
+                ProductoDAL.Update(prod);
             else
-                return ProductoDAL.Create(prod);
+                ProductoDAL.Create(prod);
+        }
+        public static ProductoEntity GetById(int id)
+        {
+            return ProductoDAL.GetById(id);
+
+        }
+        public static ProductoEntity Update(ProductoEntity prod)
+        {
+            return ProductoDAL.Update(prod);
+
         }
     }
 

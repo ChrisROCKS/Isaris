@@ -130,6 +130,12 @@
     <Compile Include="Sesion.Designer.cs">
       <DependentUpon>Sesion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock.Designer.cs">
+      <DependentUpon>Stock.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentasDia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </Compile>
     <EmbeddedResource Include="Sesion.resx">
       <DependentUpon>Sesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock.resx">
+      <DependentUpon>Stock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentasDia.resx">
       <DependentUpon>VentasDia.cs</DependentUpon>

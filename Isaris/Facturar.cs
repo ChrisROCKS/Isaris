@@ -61,7 +61,7 @@ namespace Isaris
             fact.fecha = DateTime.Now;
             fact.idCliente = cliente.idCliente;
             
-            fact.vendedor = "Karol";
+            fact.vendedor = "Katherin Martinez";
                 
             foreach(DataGridViewRow row in dgD.Rows)
             {
@@ -217,19 +217,23 @@ namespace Isaris
 
 
             double porc = 0;
-            porc = Convert.ToDouble(txtP.Text) / 100;
             double desc=0;
             double subt = 0, isv = 0, tp = 0;
+
             foreach (DataGridViewRow row in dgD.Rows)
             {
                 if (!row.IsNewRow)
                     subt += Convert.ToDouble(row.Cells[5].Value);
             }
+            porc = Convert.ToDouble(txtP.Text) / 100;
+
+            //MessageBox.Show(porc.ToString());
+
             desc = subt * porc;
             isv = subt * 0.15;
             tp = (subt + isv)-desc;
             txtSubtotal.Text = Math.Round(subt, 2).ToString("c");
-            txtDesc.Text = Math.Round(desc, 2).ToString("c");
+            txtDesc.Text = desc.ToString("c");
             txtIsv.Text = Math.Round(isv, 2).ToString("c");
             txtTotal.Text = Math.Round(tp, 2).ToString("c");
                         

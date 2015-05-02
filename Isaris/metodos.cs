@@ -16,26 +16,28 @@ namespace Isaris
     {
         public static DataTable Datos(string tabla)
         {
+            DataTable dt;
+
             using(MySqlConnection conexion =new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {
                 conexion.Open();
-                DataTable dt = new DataTable();
+                dt = new DataTable();
                 MySqlCommand comando = new MySqlCommand("Select * From " + tabla, conexion);
 
                 MySqlDataAdapter adap = new MySqlDataAdapter(comando);
 
                 adap.Fill(dt);
-                return dt;
+                
             }
-
+            return dt;
         }
         public static AutoCompleteStringCollection Autocomplete(string tabla)
         {
-            DataTable dt = Datos(tabla);
+            DataTable dt2 = Datos(tabla);
             //auto complete con sql
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
             //recorrer y cargar los items para el autocompletado
-            foreach (DataRow row in dt.Rows)
+            foreach (DataRow row in dt2.Rows)
             {
                 coleccion.Add(Convert.ToString(row["nombre"]));
             }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Isaris.Entities;
 using MySql.Data.MySqlClient;
 using System.Configuration;
-//using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace Isaris.DataAccess
 {
@@ -50,6 +50,39 @@ namespace Isaris.DataAccess
 
         //    return track;
         //}
+        public static ProductoEntity GetById(int id)
+        {
+            ProductoEntity prod = new ProductoEntity();
+
+            using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
+            {
+                conn.Open();
+
+                string sql = @"SELECT * 
+                                FROM inventario 
+                                WHERE codproducto = @codcliente";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@codcliente", id);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    prod.idProd = Convert.ToInt32(reader["codproducto"]);
+                    prod.nombre = Convert.ToString(reader["nombre"]);
+                    prod.proveedor = Convert.ToString(reader["proveedor"]);
+                    prod.existencia = Convert.ToInt32(reader["existencia"]);
+
+                    prod.unidad = Convert.ToString(reader["unidad"]);
+                    prod.precioTerranova = Convert.ToSingle(reader["precioTerranova"]);
+                    prod.precio = Convert.ToSingle(reader["precio"]);
+                }
+
+            }
+
+            return prod;
+
+        }
         public static ProductoEntity Update(ProductoEntity prod)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
@@ -74,7 +107,7 @@ namespace Isaris.DataAccess
 
 
                 cmd.ExecuteNonQuery();
-
+                MessageBox.Show("Producto actualizado!!");
             }
 
             return prod;
@@ -130,21 +163,22 @@ namespace Isaris.DataAccess
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {
-                string sql = @"INSERT INTO inventario (codproducto, nombre, precio,existencia,proveedor,unidad) 
-                                    VALUES (@codprod, @nombre, @precio,@existencia,@proveedor,@unidad)";
+                string sql = @"INSERT INTO inventario (nombre, precio,precioTerranova,existencia,unidad) 
+                                    VALUES (@nombre, @precio,@precioTerranova,@existencia,@unidad)";
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("@codprod", prod.idProd);
+                //cmd.Parameters.AddWithValue("@codprod", prod.idProd);
                 cmd.Parameters.AddWithValue("@nombre", prod.nombre);
-                cmd.Parameters.AddWithValue("@precio", prod.precioTerranova); 
-                
+                cmd.Parameters.AddWithValue("@precio", prod.precio);
+                cmd.Parameters.AddWithValue("@precioTerranova", prod.precioTerranova); 
                 cmd.Parameters.AddWithValue("@existencia", prod.existencia);
-                cmd.Parameters.AddWithValue("@proveedor", prod.proveedor);
+                //cmd.Parameters.AddWithValue("@proveedor", prod.proveedor);
                 cmd.Parameters.AddWithValue("@unidad", prod.unidad);
 
                 cmd.ExecuteNonQuery();
                 //cliente.idCliente = Convert.ToInt32(cmd.ExecuteScalar());
+                MessageBox.Show("Producto agregado!");
             }
 
             return prod;

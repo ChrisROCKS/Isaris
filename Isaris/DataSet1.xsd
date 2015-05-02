@@ -12,17 +12,7 @@
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="repalbum" msprop:Generator_TableClassName="repalbumDataTable" msprop:Generator_TableVarName="tablerepalbum" msprop:Generator_RowChangedName="repalbumRowChanged" msprop:Generator_TablePropName="repalbum" msprop:Generator_RowDeletingName="repalbumRowDeleting" msprop:Generator_RowChangingName="repalbumRowChanging" msprop:Generator_RowEvHandlerName="repalbumRowChangeEventHandler" msprop:Generator_RowDeletedName="repalbumRowDeleted" msprop:Generator_RowClassName="repalbumRow" msprop:Generator_UserTableName="repalbum" msprop:Generator_RowEvArgName="repalbumRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="albumid" msprop:Generator_ColumnVarNameInTable="columnalbumid" msprop:Generator_ColumnPropNameInRow="albumid" msprop:Generator_ColumnPropNameInTable="albumidColumn" msprop:Generator_UserColumnName="albumid" type="xs:string" minOccurs="0" />
-              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" type="xs:string" minOccurs="0" />
-              <xs:element name="artistid" msprop:Generator_ColumnVarNameInTable="columnartistid" msprop:Generator_ColumnPropNameInRow="artistid" msprop:Generator_ColumnPropNameInTable="artistidColumn" msprop:Generator_UserColumnName="artistid" type="xs:string" minOccurs="0" />
-              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="repfactura" msprop:Generator_TableClassName="repfacturaDataTable" msprop:Generator_TableVarName="tablerepfactura" msprop:Generator_TablePropName="repfactura" msprop:Generator_RowDeletingName="repfacturaRowDeleting" msprop:Generator_RowChangingName="repfacturaRowChanging" msprop:Generator_RowEvHandlerName="repfacturaRowChangeEventHandler" msprop:Generator_RowDeletedName="repfacturaRowDeleted" msprop:Generator_UserTableName="repfactura" msprop:Generator_RowChangedName="repfacturaRowChanged" msprop:Generator_RowEvArgName="repfacturaRowChangeEvent" msprop:Generator_RowClassName="repfacturaRow">
+        <xs:element name="repfactura" msprop:Generator_TableClassName="repfacturaDataTable" msprop:Generator_TableVarName="tablerepfactura" msprop:Generator_RowChangedName="repfacturaRowChanged" msprop:Generator_TablePropName="repfactura" msprop:Generator_RowDeletingName="repfacturaRowDeleting" msprop:Generator_RowChangingName="repfacturaRowChanging" msprop:Generator_RowEvHandlerName="repfacturaRowChangeEventHandler" msprop:Generator_RowDeletedName="repfacturaRowDeleted" msprop:Generator_RowClassName="repfacturaRow" msprop:Generator_UserTableName="repfactura" msprop:Generator_RowEvArgName="repfacturaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="codproducto" msprop:Generator_ColumnVarNameInTable="columncodproducto" msprop:Generator_ColumnPropNameInRow="codproducto" msprop:Generator_ColumnPropNameInTable="codproductoColumn" msprop:Generator_UserColumnName="codproducto" type="xs:int" minOccurs="0" />
