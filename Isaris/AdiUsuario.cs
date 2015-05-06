@@ -28,7 +28,7 @@ namespace Isaris
             user.UserName = txtUser.Text;
 
             UserBO.Create(user);
-            MessageBox.Show("Guardado correctaente!");
+            MessageBox.Show("Guardado correctamente!");
         }
     }
 }
