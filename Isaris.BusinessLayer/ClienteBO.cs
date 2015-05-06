@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Isaris.Entities;
 using Isaris.DataAccess;
 
-namespace Isaris.Negocio
+namespace Isaris.BusinessLayer
 {
     public class ClienteBO
     {

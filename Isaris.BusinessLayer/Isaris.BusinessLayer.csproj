@@ -45,6 +45,7 @@
     <Compile Include="FacturaBO.cs" />
     <Compile Include="ProductoBO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserBO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Isaris.DataAccess\Isaris.DataAccess.csproj">

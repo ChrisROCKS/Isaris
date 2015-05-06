@@ -45,5 +45,11 @@ namespace Isaris
             Inventario i = new Inventario();
             i.Show();
         }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            Ajustes ajus = new Ajustes();
+            ajus.Show();
+        }
     }
 }

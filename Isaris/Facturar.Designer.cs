@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.txtcodfact = new MetroFramework.Controls.MetroTextBox();
             this.btnGuardar = new MetroFramework.Controls.MetroButton();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.dgD = new System.Windows.Forms.DataGridView();
@@ -65,8 +63,6 @@
             this.txtDesc = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.txtP = new MetroFramework.Controls.MetroTextBox();
-            this.metroRadioButton1 = new MetroFramework.Controls.MetroRadioButton();
-            this.metroRadioButton2 = new MetroFramework.Controls.MetroRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,33 +77,6 @@
             this.metroLabel1.TabIndex = 1;
             this.metroLabel1.Text = "Cliente:";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel3.Location = new System.Drawing.Point(571, 80);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(86, 19);
-            this.metroLabel3.Style = MetroFramework.MetroColorStyle.Red;
-            this.metroLabel3.TabIndex = 6;
-            this.metroLabel3.Text = "No. Factura";
-            this.metroLabel3.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // txtcodfact
-            // 
-            this.txtcodfact.Lines = new string[0];
-            this.txtcodfact.Location = new System.Drawing.Point(663, 76);
-            this.txtcodfact.MaxLength = 32767;
-            this.txtcodfact.Name = "txtcodfact";
-            this.txtcodfact.PasswordChar = '\0';
-            this.txtcodfact.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtcodfact.SelectedText = "";
-            this.txtcodfact.Size = new System.Drawing.Size(161, 23);
-            this.txtcodfact.Style = MetroFramework.MetroColorStyle.Red;
-            this.txtcodfact.TabIndex = 5;
-            this.txtcodfact.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtcodfact.UseSelectable = true;
             // 
             // btnGuardar
             // 
@@ -163,8 +132,8 @@
             // Column8
             // 
             this.Column8.DataPropertyName = "codigo";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle61.NullValue = null;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle61;
             this.Column8.HeaderText = "Codigo Producto";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -182,9 +151,9 @@
             // Column10
             // 
             this.Column10.DataPropertyName = "cantidad";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle62.Format = "N2";
+            dataGridViewCellStyle62.NullValue = null;
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle62;
             this.Column10.HeaderText = "Cantidad";
             this.Column10.Name = "Column10";
             this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -192,9 +161,9 @@
             // Column11
             // 
             this.Column11.DataPropertyName = "precio";
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Column11.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle63.Format = "C2";
+            dataGridViewCellStyle63.NullValue = null;
+            this.Column11.DefaultCellStyle = dataGridViewCellStyle63;
             this.Column11.HeaderText = "Precio";
             this.Column11.Name = "Column11";
             this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -210,9 +179,9 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "valor";
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle64.Format = "C2";
+            dataGridViewCellStyle64.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle64;
             this.Column1.HeaderText = "Valor";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -221,9 +190,9 @@
             // Column13
             // 
             this.Column13.DataPropertyName = "existencia";
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle65.Format = "N2";
+            dataGridViewCellStyle65.NullValue = null;
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle65;
             this.Column13.HeaderText = "Existencia";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
@@ -232,9 +201,9 @@
             // Column14
             // 
             this.Column14.DataPropertyName = "nuevaExistencia";
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle66.Format = "N2";
+            dataGridViewCellStyle66.NullValue = null;
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle66;
             this.Column14.HeaderText = "Nueva Existencia";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
@@ -475,37 +444,11 @@
             this.txtP.UseSelectable = true;
             this.txtP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtP_KeyPress);
             // 
-            // metroRadioButton1
-            // 
-            this.metroRadioButton1.AutoSize = true;
-            this.metroRadioButton1.Checked = true;
-            this.metroRadioButton1.Location = new System.Drawing.Point(599, 127);
-            this.metroRadioButton1.Name = "metroRadioButton1";
-            this.metroRadioButton1.Size = new System.Drawing.Size(80, 15);
-            this.metroRadioButton1.TabIndex = 31;
-            this.metroRadioButton1.TabStop = true;
-            this.metroRadioButton1.Text = "Expobaños";
-            this.metroRadioButton1.UseSelectable = true;
-            this.metroRadioButton1.CheckedChanged += new System.EventHandler(this.metroRadioButton1_CheckedChanged);
-            // 
-            // metroRadioButton2
-            // 
-            this.metroRadioButton2.AutoSize = true;
-            this.metroRadioButton2.Location = new System.Drawing.Point(713, 127);
-            this.metroRadioButton2.Name = "metroRadioButton2";
-            this.metroRadioButton2.Size = new System.Drawing.Size(76, 15);
-            this.metroRadioButton2.TabIndex = 32;
-            this.metroRadioButton2.Text = "Terranova";
-            this.metroRadioButton2.UseSelectable = true;
-            this.metroRadioButton2.CheckedChanged += new System.EventHandler(this.metroRadioButton2_CheckedChanged);
-            // 
             // Facturar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 705);
-            this.Controls.Add(this.metroRadioButton2);
-            this.Controls.Add(this.metroRadioButton1);
             this.Controls.Add(this.metroLabel10);
             this.Controls.Add(this.txtP);
             this.Controls.Add(this.metroLabel9);
@@ -526,10 +469,9 @@
             this.Controls.Add(this.dgD);
             this.Controls.Add(this.cmbCliente);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.metroLabel3);
-            this.Controls.Add(this.txtcodfact);
             this.Controls.Add(this.metroLabel1);
             this.Name = "Facturar";
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Facturar";
             this.Load += new System.EventHandler(this.facturar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgD)).EndInit();
@@ -541,8 +483,6 @@
         #endregion
 
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroTextBox txtcodfact;
         private MetroFramework.Controls.MetroButton btnGuardar;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.DataGridView dgD;
@@ -563,8 +503,6 @@
         private MetroFramework.Controls.MetroTextBox txtDesc;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private MetroFramework.Controls.MetroTextBox txtP;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton1;
-        private MetroFramework.Controls.MetroRadioButton metroRadioButton2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;

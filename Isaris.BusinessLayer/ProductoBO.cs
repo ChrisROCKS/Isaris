@@ -8,7 +8,7 @@ using Isaris.DataAccess;
 using Isaris.Entities;
 using System.Windows.Forms;
 
-namespace Isaris.Negocio
+namespace Isaris.BusinessLayer
 {
     public class ProductoBO
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using MetroFramework.Forms;
 using System.Windows.Forms;
 using Isaris.Entities;
-using Isaris.Negocio;
+using Isaris.BusinessLayer;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 

@@ -8,7 +8,7 @@ using System.Transactions;
 using Isaris.Entities;
 using Isaris.DataAccess;
 
-namespace Isaris.Negocio
+namespace Isaris.BusinessLayer
 {
     public static class FacturaBO
     {
