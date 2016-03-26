@@ -7,12 +7,27 @@ using System.Threading.Tasks;
 using Isaris.Entities;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using Isaris.DataAccess.Models;
+using DapperExtensions;
 
 namespace Isaris.DataAccess
 {
     public class FacturaDAL
     {
-        public static void Create(FacturaEntity factura)
+        public static IEnumerable<facturas> GetAll()
+        {
+            using (
+                MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString())
+                )
+            {
+                conn.Open();
+                var list = conn.GetList<facturas>();
+                return list;
+            }
+        }
+
+        public static
+            void Create(FacturaEntity factura)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {

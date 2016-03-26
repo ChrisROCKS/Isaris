@@ -118,6 +118,12 @@
     <Compile Include="Facturar.Designer.cs">
       <DependentUpon>Facturar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmInvoiceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInvoiceList.Designer.cs">
+      <DependentUpon>FrmInvoiceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Facturar.resx">
       <DependentUpon>Facturar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInvoiceList.resx">
+      <DependentUpon>FrmInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>
@@ -230,6 +239,10 @@
     <ProjectReference Include="..\Isaris.BusinessLayer\Isaris.BusinessLayer.csproj">
       <Project>{17064e7b-3ccc-4130-83ce-8a66d0e800b4}</Project>
       <Name>Isaris.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Isaris.DataAccess\Isaris.DataAccess.csproj">
+      <Project>{7397c54a-74b2-4b3a-ae31-f31af244a12b}</Project>
+      <Name>Isaris.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Isaris.Entities\Isaris.Entities.csproj">
       <Project>{8d25cd98-d4bf-49d0-8e4b-dda830b45d6b}</Project>

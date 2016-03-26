@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 using System.Transactions;
 using Isaris.Entities;
 using Isaris.DataAccess;
+using Isaris.DataAccess.Models;
 
 namespace Isaris.BusinessLayer
 {
     public static class FacturaBO
     {
+        public static IEnumerable<facturas> GetAll()
+        {
+            return FacturaDAL.GetAll();
+        }
+
         public static void RegistrarFacturacion(FacturaEntity invoice)
         {
             //
