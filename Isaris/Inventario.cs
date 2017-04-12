@@ -25,11 +25,10 @@ namespace Isaris
         private void metroButton1_Click(object sender, EventArgs e)
         {
             prod.nombre = cmbProducto.Text;
-            prod.precio=Convert.ToDouble(txtPrecio.Text);
-            prod.precioTerranova=Convert.ToDouble(txtPrecioTerranova.Text);
+            prod.precio=Convert.ToDecimal(txtPrecio.Text);
+            prod.precioTerranova=Convert.ToDecimal(txtPrecioTerranova.Text);
             prod.unidad=txtUnidad.Text;
-            prod.existencia = Convert.ToSingle(txtCantidad.Text);
-            //prod.idProd = Convert.ToInt32(txtCodProd.Text);
+            prod.existencia = Convert.ToDecimal(txtCantidad.Text);
             ProductoBO.Save(prod);
             prod = null;
         }

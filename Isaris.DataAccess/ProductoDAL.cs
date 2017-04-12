@@ -13,43 +13,6 @@ namespace Isaris.DataAccess
 {
     public class ProductoDAL
     {
-        //public static List<ProductoEntity> GetAll(string campoPrecio)
-        //{
-        //    List<ProductoEntity> list = new List<ProductoEntity>(); ;
-
-        //    using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
-        //    {
-        //        conn.Open();
-
-        //        string sql = @"SELECT codproducto, nombre FROM inventario ORDER BY nombre";
-        //        MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-        //        MySqlDataReader reader = cmd.ExecuteReader();
-
-        //        while (reader.Read())
-        //        {
-        //            list.Add(LoadProd(reader,campoPrecio));
-        //        }
-
-        //    }
-
-        //    return list;
-        //}
-        //private static ProductoEntity LoadProd(IDataReader reader,string campoPrecio)
-        //{
-        //    ProductoEntity track = new ProductoEntity();
-
-        //    track.idProd = Convert.ToInt32(reader["codproducto"]);
-        //    track.nombre = Convert.ToString(reader["nombre"]);
-        //    track.proveedor = Convert.ToString(reader["proveedor"]);
-        //    track.existencia = Convert.ToInt32(reader["existencia"]);
-
-        //    track.unidad = Convert.ToString(reader["unidad"]);
-        //    track.precio = Convert.ToSingle(reader[campoPrecio]);
-
-
-        //    return track;
-        //}
         public static ProductoEntity GetById(int id)
         {
             ProductoEntity prod = new ProductoEntity();
@@ -74,8 +37,8 @@ namespace Isaris.DataAccess
                     prod.existencia = Convert.ToInt32(reader["existencia"]);
 
                     prod.unidad = Convert.ToString(reader["unidad"]);
-                    prod.precioTerranova = Convert.ToSingle(reader["precioTerranova"]);
-                    prod.precio = Convert.ToSingle(reader["precio"]);
+                    prod.precioTerranova = Convert.ToDecimal(reader["precioTerranova"]);
+                    prod.precio = Convert.ToDecimal(reader["precio"]);
                 }
 
             }
@@ -132,7 +95,7 @@ namespace Isaris.DataAccess
                     prod.existencia = Convert.ToInt32(reader["existencia"]);
 
                     prod.unidad = Convert.ToString(reader["unidad"]);
-                    prod.precioTerranova = Convert.ToSingle(reader[campoPrecio]);
+                    prod.precioTerranova = Convert.ToDecimal(reader[campoPrecio]);
                 }
             }
 
@@ -163,21 +126,19 @@ namespace Isaris.DataAccess
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {
-                string sql = @"INSERT INTO inventario (nombre, precio,precioTerranova,existencia,unidad) 
-                                    VALUES (@nombre, @precio,@precioTerranova,@existencia,@unidad)";
+                string sql = @"INSERT INTO inventario (nombre, precio,precioTerranova,existencia,unidad, proveedor) 
+                                    VALUES (@nombre, @precio,@precioTerranova,@existencia,@unidad, @provider)";
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                //cmd.Parameters.AddWithValue("@codprod", prod.idProd);
                 cmd.Parameters.AddWithValue("@nombre", prod.nombre);
                 cmd.Parameters.AddWithValue("@precio", prod.precio);
                 cmd.Parameters.AddWithValue("@precioTerranova", prod.precioTerranova); 
                 cmd.Parameters.AddWithValue("@existencia", prod.existencia);
-                //cmd.Parameters.AddWithValue("@proveedor", prod.proveedor);
+                cmd.Parameters.AddWithValue("@provider", prod.proveedor);
                 cmd.Parameters.AddWithValue("@unidad", prod.unidad);
 
                 cmd.ExecuteNonQuery();
-                //cliente.idCliente = Convert.ToInt32(cmd.ExecuteScalar());
                 MessageBox.Show("Producto agregado!");
             }
 

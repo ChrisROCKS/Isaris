@@ -44,12 +44,14 @@ namespace Isaris
 
             return coleccion;
         }
-        public static void Borrar(Form frm)
+        public static void Borrar(Form frm, Control control)
         {
             foreach(MetroTextBox mtxt in frm.Controls.OfType<MetroTextBox>())
             {
                 mtxt.Clear();
             }
+
+            control.Focus();
         }
     }
 }

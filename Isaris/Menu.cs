@@ -19,14 +19,14 @@ namespace Isaris
 
         private void hacerFacturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Facturar f = new Facturar();
-            f.Show();
+            //Facturar f = new Facturar();
+            //f.Show();
         }
 
         private void buscarFacturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BuscarFact b = new BuscarFact();
-            b.Show();
+            //BuscarFact b = new BuscarFact();
+            //b.Show();
         }
 
         private void salirDelProgramaToolStripMenuItem_Click(object sender, EventArgs e)
