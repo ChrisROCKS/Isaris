@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
-using System.Threading.Tasks;
 using Isaris.Entities;
 using MySql.Data.MySqlClient;
 using System.Configuration;
-using System.Windows.Forms;
 
 namespace Isaris.DataAccess
 {
     public class ProductoDAL
     {
+        public ProductoDAL()
+        {
+
+        }
+
         public static ProductoEntity GetById(int id)
         {
             ProductoEntity prod = new ProductoEntity();
@@ -46,6 +46,7 @@ namespace Isaris.DataAccess
             return prod;
 
         }
+
         public static ProductoEntity Update(ProductoEntity prod)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
@@ -56,7 +57,8 @@ namespace Isaris.DataAccess
                                             nombre = @nombre, 
                                             precio = @precio,
                                             precioTerranova = @precioTerranova,
-                                            unidad = @unidad
+                                            unidad = @unidad,
+                                            proveedor = @provider
                                     WHERE codproducto = @idProd";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -65,12 +67,12 @@ namespace Isaris.DataAccess
 
                 cmd.Parameters.AddWithValue("@precio", prod.precioTerranova);
                 cmd.Parameters.AddWithValue("@unidad", prod.unidad);
+                cmd.Parameters.AddWithValue("@provider", prod.proveedor);
                 cmd.Parameters.AddWithValue("@precioTerranova", prod.precioTerranova);
                 cmd.Parameters.AddWithValue("@idProd", prod.idProd);
 
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Producto actualizado!!");
             }
 
             return prod;
@@ -139,7 +141,6 @@ namespace Isaris.DataAccess
                 cmd.Parameters.AddWithValue("@unidad", prod.unidad);
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Producto agregado!");
             }
 
             return prod;
@@ -155,7 +156,7 @@ namespace Isaris.DataAccess
             }
             return dt;
         }
-        public static void UpdateStock(int idProduct,float Quantity)
+        public static void UpdateStock(int idProduct, float Quantity)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {

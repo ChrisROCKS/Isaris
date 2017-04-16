@@ -51,6 +51,11 @@ namespace Isaris
                 mtxt.Clear();
             }
 
+            foreach (NumericUpDown mtxt in frm.Controls.OfType<NumericUpDown>())
+            {
+                mtxt.Value = 0;
+            }
+
             control.Focus();
         }
     }

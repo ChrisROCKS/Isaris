@@ -1,13 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isaris", "Isaris\Isaris.csproj", "{E71BA746-D7F6-497C-BE66-B321723F3727}"
+	ProjectSection(ProjectDependencies) = postProject
+		{17064E7B-3CCC-4130-83CE-8A66D0E800B4} = {17064E7B-3CCC-4130-83CE-8A66D0E800B4}
+		{8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B} = {8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isaris.BusinessLayer", "Isaris.BusinessLayer\Isaris.BusinessLayer.csproj", "{17064E7B-3CCC-4130-83CE-8A66D0E800B4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7397C54A-74B2-4B3A-AE31-F31AF244A12B} = {7397C54A-74B2-4B3A-AE31-F31AF244A12B}
+		{8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B} = {8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isaris.DataAccess", "Isaris.DataAccess\Isaris.DataAccess.csproj", "{7397C54A-74B2-4B3A-AE31-F31AF244A12B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B} = {8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Isaris.Entities", "Isaris.Entities\Isaris.Entities.csproj", "{8D25CD98-D4BF-49D0-8E4B-DDA830B45D6B}"
 EndProject

@@ -17,6 +17,7 @@ namespace Isaris.BusinessLayer
     {
         private readonly IsarisContext context = new IsarisContext();
         private readonly BaseRepository<Product> productRepository;
+
         public ProductoBO()
         {
             this.productRepository = new ProductRepository(context);
@@ -47,16 +48,30 @@ namespace Isaris.BusinessLayer
             return ProductoDAL.Create(prod);
         }
 
-        public static void UpdateStock(int idProd, float Quantity)
+        public static void UpdateStock(int idProd, int Quantity)
         {
             ProductoDAL.UpdateStock(idProd, Quantity);
         }
-        public static void Save(ProductoEntity prod)
+        public void Save(ProductoEntity product)
         {
-            if (ProductoDAL.Exists(prod.idProd))
-                ProductoDAL.Update(prod);
+            if (ProductoDAL.Exists(product.idProd))
+            {
+                productRepository.Update(new Product
+                {
+                    Id = product.idProd,
+                    Name = product.nombre,
+                    Price = product.precio,
+                    PriceTerranova = product.precioTerranova,
+                    Provider = product.proveedor,
+                    StockQuantity = product.existencia,
+                    Unit = product.unidad
+                });
+                productRepository.SaveChanges();
+            }
             else
-                ProductoDAL.Create(prod);
+            {
+                ProductoDAL.Create(product);
+            }
         }
         public static ProductoEntity GetById(int id)
         {

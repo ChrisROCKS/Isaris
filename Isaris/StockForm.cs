@@ -34,14 +34,51 @@ namespace Isaris
             foreach (var column in this.ProductsGrid.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
+                column.Appearance.AnyRecordFieldCell.ReadOnly = true;
             }
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            ProductForm form = new ProductForm();
-            form.TopMost = true;
-            form.ShowDialog();
+            var form = new ProductForm
+            {
+                //TopMost = true
+            };
+            var result = form.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+            }
+        }
+
+        private void StockForm_Load(object sender, EventArgs e)
+        {
+            this.ProductsGrid.TableControlCurrentCellControlDoubleClick += new GridTableControlControlEventHandler(gridGroupingControl1_TableControlCurrentCellControlDoubleClick);
+        }
+
+        private void gridGroupingControl1_TableControlCurrentCellControlDoubleClick(object sender, GridTableControlControlEventArgs e)
+        {
+            var record = this.ProductsGrid.Table.CurrentRecord;
+
+            var form = new ProductForm
+            {
+                //TopMost = true
+                Product = new Entities.ProductoEntity { idProd = Convert.ToInt32(record.GetValue("idProd")) }
+            };
+
+            var result = form.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+            }
+
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            var row = this.ProductsGrid.TableModel.Selections.GetSelectedRows(false, true)[0];
         }
     }
 }

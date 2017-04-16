@@ -1,13 +1,7 @@
 ﻿using Isaris.BusinessLayer;
+using Isaris.Entities;
 using MetroFramework.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Isaris
@@ -20,61 +14,86 @@ namespace Isaris
         public ProductForm()
         {
             InitializeComponent();
+
+            this.nudPrice.Maximum = decimal.MaxValue;
+            this.nudPrice.Minimum = 0;
+
+            this.nudTerranovaPrice.Maximum = decimal.MaxValue;
+            this.nudTerranovaPrice.Minimum = 0;
+
+            this.nudQuantity.Maximum = int.MaxValue;
+            this.nudQuantity.Minimum = 0;
         }
 
-        public bool IsEditing { get; set; }
+        public ProductoEntity Product { get; set; }
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
-            if (this.IsEditing)
+            if (this.Product != null)
             {
                 this.DisableQuantityFiled();
+                this.LoadFields();
             }
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            ProductoBO.Create(new Entities.ProductoEntity
+            var product = new Entities.ProductoEntity
             {
-                existencia = Convert.ToInt32(txtQuantity.Text),
+                existencia = nudQuantity.Value,
                 nombre = txtName.Text,
-                precio = Convert.ToDecimal(txtPrice.Text),
-                precioTerranova = Convert.ToDecimal(txtTerranovaPrice.Text),
+                precio = nudPrice.Value,
+                precioTerranova = nudTerranovaPrice.Value,
                 proveedor = txtProvider.Text,
-            });
+                idProd = this.Product?.idProd ?? 0
+            };
 
+            //if (this.Product != null)
+            //{
+            //    ProductoBO.Update(product);
+            //    metodos.Borrar(this, txtName);
+            //    this.DialogResult = DialogResult.OK;
+            //    MessageBox.Show("¡Producto actualizado!");
+            //}
+            //else
+            //{
+            //    ProductoBO.Create(product);
+            //    metodos.Borrar(this, txtName);
+            //    this.DialogResult = DialogResult.OK;
+            //    MessageBox.Show("¡Producto guardado!");
+            //}
+
+            this.productLogic.Save(product);
             metodos.Borrar(this, txtName);
+            this.DialogResult = DialogResult.OK;
+            MessageBox.Show("¡Producto actualizado!");
         }
 
         private void DisableQuantityFiled()
         {
-            this.txtQuantity.ReadOnly = true;
+            this.nudQuantity.ReadOnly = true;
         }
 
         private void DisableFileds()
         {
             this.txtName.ReadOnly = true;
-            this.txtPrice.ReadOnly = true;
+            this.nudPrice.ReadOnly = true;
             this.txtProvider.ReadOnly = true;
-            this.txtTerranovaPrice.ReadOnly = true;
-            this.txtQuantity.ReadOnly = true;
+            this.nudTerranovaPrice.ReadOnly = true;
+            this.nudQuantity.ReadOnly = true;
         }
 
-        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        private void LoadFields()
         {
-            this.Onlynumwithsinglepoint(sender, e);
-        }
+            var product = ProductoBO.GetById(this.Product.idProd);
 
-        public void Onlynumwithsinglepoint(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == '.'))
-            { e.Handled = true; }
-            TextBox txtDecimal = sender as TextBox;
-            if (e.KeyChar == '.' && txtDecimal.Text.Contains("."))
-            {
-                e.Handled = true;
-            }
-        }
+            this.Product = product;
 
+            txtName.Text = product.nombre;
+            txtProvider.Text = product.proveedor;
+            nudPrice.Value = product.precio;
+            nudQuantity.Value = product.existencia;
+            nudTerranovaPrice.Value = product.precioTerranova;
+        }
     }
 }

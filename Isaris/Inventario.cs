@@ -29,7 +29,6 @@ namespace Isaris
             prod.precioTerranova=Convert.ToDecimal(txtPrecioTerranova.Text);
             prod.unidad=txtUnidad.Text;
             prod.existencia = Convert.ToDecimal(txtCantidad.Text);
-            ProductoBO.Save(prod);
             prod = null;
         }
 

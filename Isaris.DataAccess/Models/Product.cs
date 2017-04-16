@@ -24,7 +24,6 @@ namespace Isaris.DataAccess.Models
         [Column("existencia")]
         public decimal StockQuantity { get; set; }
 
-        [Required]
         [StringLength(255)]
         [Column("proveedor")]
         public string Provider { get; set; }
