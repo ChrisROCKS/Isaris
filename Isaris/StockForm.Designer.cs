@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.ProductsGrid = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.btnCrear = new MetroFramework.Controls.MetroButton();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsGrid)).BeginInit();
@@ -58,15 +58,15 @@
             this.ProductsGrid.UseRightToLeftCompatibleTextBox = true;
             this.ProductsGrid.VersionInfo = "15.1450.0.41";
             // 
-            // metroButton1
+            // btnCrear
             // 
-            this.metroButton1.Location = new System.Drawing.Point(23, 63);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(123, 32);
-            this.metroButton1.TabIndex = 3;
-            this.metroButton1.Text = "Crear";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            this.btnCrear.Location = new System.Drawing.Point(23, 63);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(123, 32);
+            this.btnCrear.TabIndex = 3;
+            this.btnCrear.Text = "Crear";
+            this.btnCrear.UseSelectable = true;
+            this.btnCrear.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // metroButton2
             // 
@@ -86,6 +86,7 @@
             this.metroButton3.TabIndex = 5;
             this.metroButton3.Text = "Agregar";
             this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
             // 
             // StockForm
             // 
@@ -94,7 +95,7 @@
             this.ClientSize = new System.Drawing.Size(1222, 615);
             this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.metroButton2);
-            this.Controls.Add(this.metroButton1);
+            this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.ProductsGrid);
             this.Name = "StockForm";
             this.Text = "Inventario";
@@ -107,7 +108,7 @@
         #endregion
 
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl ProductsGrid;
-        private MetroFramework.Controls.MetroButton metroButton1;
+        private MetroFramework.Controls.MetroButton btnCrear;
         private MetroFramework.Controls.MetroButton metroButton2;
         private MetroFramework.Controls.MetroButton metroButton3;
     }

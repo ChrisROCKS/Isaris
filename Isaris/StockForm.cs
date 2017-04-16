@@ -59,6 +59,24 @@ namespace Isaris
 
         private void gridGroupingControl1_TableControlCurrentCellControlDoubleClick(object sender, GridTableControlControlEventArgs e)
         {
+
+            ShowEditWindow();
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            var record = this.ProductsGrid.Table.CurrentRecord;
+            if (record != null)
+            {
+                MessageBox.Show("Debe seleccionar una fila");
+                return;
+            }
+
+            ShowEditWindow();
+        }
+
+        private void ShowEditWindow()
+        {
             var record = this.ProductsGrid.Table.CurrentRecord;
 
             var form = new ProductForm
@@ -73,12 +91,11 @@ namespace Isaris
             {
                 this.ProductsGrid.DataSource = this.productLogic.All().ToList();
             }
-
         }
 
-        private void metroButton2_Click(object sender, EventArgs e)
+        private void metroButton3_Click(object sender, EventArgs e)
         {
-            var row = this.ProductsGrid.TableModel.Selections.GetSelectedRows(false, true)[0];
+            input
         }
     }
 }
