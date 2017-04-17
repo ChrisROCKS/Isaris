@@ -48,6 +48,22 @@ namespace Isaris.BusinessLayer
             return ProductoDAL.Create(prod);
         }
 
+        public void AddQuantity(int productId, int newQuantity)
+        {
+            var product = this.productRepository.FirstOrDefault(x => x.Id == productId);
+            product.StockQuantity += newQuantity;
+            this.productRepository.Update(product);
+            this.productRepository.SaveChanges();
+        }
+
+        public void SubtractQuantity(int productId, int newQuantity)
+        {
+            var product = this.productRepository.FirstOrDefault(x => x.Id == productId);
+            product.StockQuantity -= newQuantity;
+            this.productRepository.Update(product);
+            this.productRepository.SaveChanges();
+        }
+
         public static void UpdateStock(int idProd, int Quantity)
         {
             ProductoDAL.UpdateStock(idProd, Quantity);
