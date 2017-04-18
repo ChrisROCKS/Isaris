@@ -19,7 +19,15 @@ namespace Isaris
         private void metroButton1_Click(object sender, EventArgs e)
         {
             this.productLogic.AddQuantity(this.ProductId, Convert.ToInt32(txtQuantity.Text));
+            this.DialogResult = DialogResult.OK;
             MessageBox.Show("¡Cantidad actualizada!");
+        }
+
+        private void ProductQuantityForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            this.Parent = null;
+            e.Cancel = true;
         }
     }
 }

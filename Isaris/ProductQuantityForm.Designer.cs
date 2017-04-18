@@ -48,9 +48,9 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(23, 105);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(62, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(65, 19);
             this.metroLabel1.TabIndex = 1;
-            this.metroLabel1.Text = "Cantidad";
+            this.metroLabel1.Text = "Cantidad:";
             // 
             // txtQuantity
             // 
@@ -92,6 +92,7 @@
             this.Controls.Add(this.metroButton1);
             this.Name = "ProductQuantityForm";
             this.Text = "Agregar existencias";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProductQuantityForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

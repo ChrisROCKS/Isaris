@@ -2,6 +2,7 @@
 using Isaris.BusinessLayer.Utilities;
 using MetroFramework.Forms;
 using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,9 @@ namespace Isaris
 {
     public partial class StockForm : MetroForm
     {
-        ProductoBO productLogic = new ProductoBO();
+        private ProductoBO productLogic = new ProductoBO();
+        //private ProductQuantityForm quantityForm;
+
         public StockForm()
         {
             InitializeComponent();
@@ -59,26 +62,24 @@ namespace Isaris
 
         private void gridGroupingControl1_TableControlCurrentCellControlDoubleClick(object sender, GridTableControlControlEventArgs e)
         {
-
-            ShowEditWindow();
+            var record = this.ProductsGrid.Table.CurrentRecord;
+            ShowEditWindow(record);
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
             var record = this.ProductsGrid.Table.CurrentRecord;
-            if (record != null)
+            if (record == null)
             {
                 MessageBox.Show("Debe seleccionar una fila");
                 return;
             }
 
-            ShowEditWindow();
+            ShowEditWindow(record);
         }
 
-        private void ShowEditWindow()
+        private void ShowEditWindow(Record record)
         {
-            var record = this.ProductsGrid.Table.CurrentRecord;
-
             var form = new ProductForm
             {
                 //TopMost = true
@@ -95,7 +96,26 @@ namespace Isaris
 
         private void metroButton3_Click(object sender, EventArgs e)
         {
-            
+            var record = this.ProductsGrid.Table.CurrentRecord;
+
+            if (record == null)
+            {
+                MessageBox.Show("Debe seleccionar una fila");
+                return;
+            }
+
+            var quantityForm = new ProductQuantityForm
+            {
+                ProductId = Convert.ToInt32(record.GetValue("idProd")),
+                //TopMost = true;
+            };
+
+            var result = quantityForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+            }
         }
     }
 }

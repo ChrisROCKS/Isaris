@@ -71,16 +71,16 @@ namespace Isaris
 
         private void DisableQuantityFiled()
         {
-            this.nudQuantity.ReadOnly = true;
+            this.nudQuantity.Enabled = false;
         }
 
         private void DisableFileds()
         {
-            this.txtName.ReadOnly = true;
-            this.nudPrice.ReadOnly = true;
-            this.txtProvider.ReadOnly = true;
-            this.nudTerranovaPrice.ReadOnly = true;
-            this.nudQuantity.ReadOnly = true;
+            this.txtName.Enabled = false;
+            this.nudPrice.Enabled = false;
+            this.txtProvider.Enabled = false;
+            this.nudTerranovaPrice.Enabled = false;
+            this.nudQuantity.Enabled = false;
         }
 
         private void LoadFields()
