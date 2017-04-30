@@ -69,15 +69,12 @@ namespace Isaris
 
                 if(!row.IsNewRow)
                 {
-                    //row.Cells[2].Selected = true;
                     detalle.idProd = Convert.ToInt32(row.Cells[0].Value);
-                    detalle.cantidad = Convert.ToSingle(row.Cells[2].Value);
-                    detalle.precio = Convert.ToDouble(row.Cells[3].Value);
+                    detalle.cantidad = Convert.ToInt32(row.Cells[2].Value);
+                    detalle.precio = Convert.ToDecimal(row.Cells[3].Value);
                     detalle.unidad = Convert.ToString(row.Cells[4].Value);
 
                     fact.Lineas.Add(detalle);
-
-                    //ProductoBO.UpdateStock(detalle.idProd,Convert.ToSingle(row.Cells[7].Value));
                 }
             }
             fact.descuento = Convert.ToInt32(txtP.Text);

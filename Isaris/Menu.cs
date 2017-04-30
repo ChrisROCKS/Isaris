@@ -42,7 +42,7 @@ namespace Isaris
 
         private void gestionarInventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Inventario i = new Inventario();
+            StockForm i = new StockForm();
             i.Show();
         }
 

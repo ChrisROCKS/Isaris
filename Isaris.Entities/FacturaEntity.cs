@@ -12,69 +12,36 @@ namespace Isaris.Entities
         {
             this.Lineas = new List<DetalleEntity>();
         }
-        private double porcentaje;
+        private decimal porcentaje;
         public int idFactura { get; set; }
         public int idCliente { get; set; }
         public string vendedor { get; set; }
         public DateTime fecha { get; set; }
         public List<DetalleEntity> Lineas { get; set; }
 
-        public double subtotal
+        public decimal subtotal
         {
             get { return this.Lineas.Sum(x => x.precio * x.cantidad); }
         }
-        public double descuento
+        public decimal descuento
         {
             get 
             { 
-                return (porcentaje /100)*this.subtotal; 
+                return (porcentaje /100) * this.subtotal; 
             }
             set 
             { 
                 porcentaje = value; 
             }
         }
-        public double isv
+        public decimal isv
         {
-            get { return subtotal * 0.15; }
+            get { return subtotal * Convert.ToDecimal(0.15); }
         }
 
-        public double total
+        public decimal total
         {
             get { return (subtotal + isv)-descuento; }
         }
-
-
-        //// Has Dispose() already been called?
-        //Boolean isDisposed = false;
-        //// Implement IDisposable.
-        //public void Dispose()
-        //{
-        //ReleaseResources(true); // cleans both unmanaged and managed resources
-        //GC.SuppressFinalize(this); // supress finalization
-        //}
- 
-        //protected void ReleaseResources(bool isFromDispose)
-        //{
-        //// Try to release resources only if they have not been previously released.
-        //if (!isDisposed)
-        //{
-        //    if (isFromDispose)
-        //    {
-        //    // TODO: Release managed resources here
-        //    // GC will automatically release Managed resources by calling the destructor,
-        //    // but Dispose() need to release managed resources manually
-        //    }
-        //    //TODO: Release unmanaged resources here
-        //}
-        //isDisposed = true; // Dispose() can be called numerous times
-        //}
-        //// Use C# destructor syntax for finalization code, invoked by GC only.
-        //~FacturaEntity()
-        //{
-        //    // cleans only unmanaged stuffs
-        //    ReleaseResources(false);
-        //}
-
     }
 }

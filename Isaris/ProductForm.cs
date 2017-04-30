@@ -9,7 +9,7 @@ namespace Isaris
     public partial class ProductForm : MetroForm
     {
 
-        private readonly ProductoBO productLogic = new ProductoBO();
+        private readonly ProductoBO productManager = new ProductoBO();
 
         public ProductForm()
         {
@@ -63,7 +63,7 @@ namespace Isaris
             //    MessageBox.Show("¡Producto guardado!");
             //}
 
-            this.productLogic.Save(product);
+            this.productManager.Save(product);
             metodos.Borrar(this, txtName);
             this.DialogResult = DialogResult.OK;
             MessageBox.Show("¡Producto actualizado!");

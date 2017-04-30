@@ -67,7 +67,7 @@ namespace Isaris.DataAccess
 
             }
         }
-        public static void UpdateTotal(int idInvoice, double total)
+        public static void UpdateTotal(int idInvoice, decimal total)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {

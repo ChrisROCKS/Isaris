@@ -12,20 +12,15 @@ namespace Isaris.BusinessLayer
 {
     public static class FacturaBO
     {
+        private static readonly ProductoBO productManager = new ProductoBO();
+
         public static void RegistrarFacturacion(FacturaEntity invoice)
         {
-            //
-            // inicializo la transacciones
-            //
             using (TransactionScope scope = new TransactionScope())
             {
-                //
-                // Creo la factura y sus lineas
-                //
                 FacturaDAL.Create(invoice);
-                //
-                // Actualizo el total
-                //
+
+                invoice.Lineas.ForEach(x => productManager.SubtractQuantity(x.idProd, x.cantidad));
 
                 FacturaDAL.UpdateTotal(invoice.idFactura, invoice.total);
 
@@ -35,18 +30,9 @@ namespace Isaris.BusinessLayer
         }
         public static void RegistrarCotizacion(FacturaEntity invoice)
         {
-            //
-            // inicializo la transacciones
-            //
             using (TransactionScope scope = new TransactionScope())
             {
-                //
-                // Creo la factura y sus lineas
-                //
                 FacturaDAL.Create(invoice);
-                //
-                // Actualizo el total
-                //
 
                 CotizacionDAL.UpdateTotal(invoice.idFactura, invoice.total);
 

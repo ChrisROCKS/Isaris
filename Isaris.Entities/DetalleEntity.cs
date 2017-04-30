@@ -11,9 +11,9 @@ namespace Isaris.Entities
         public int idDetalle { get; set; }
         public int idFactura { get; set; }
         public int idProd { get; set; }
-        public float cantidad { get; set; }
+        public int cantidad { get; set; }
         public string unidad { get; set; }
-        public double precio { get; set; }
-        public float valor { set; get; }
+        public decimal precio { get; set; }
+        public decimal valor { set; get; }
     }
 }

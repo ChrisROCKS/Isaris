@@ -165,6 +165,12 @@
     <Compile Include="Ajustes.Designer.cs">
       <DependentUpon>Ajustes.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuscarFact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarFact.Designer.cs">
+      <DependentUpon>BuscarFact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Facturar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturar.Designer.cs">
+      <DependentUpon>Facturar.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventario.cs">
       <SubType>Form</SubType>
@@ -221,11 +233,23 @@
     <Compile Include="VentasDia.Designer.cs">
       <DependentUpon>VentasDia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visor.Designer.cs">
+      <DependentUpon>Visor.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdiUsuario.resx">
       <DependentUpon>AdiUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuscarFact.resx">
+      <DependentUpon>BuscarFact.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturar.resx">
+      <DependentUpon>Facturar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>
@@ -257,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VentasDia.resx">
       <DependentUpon>VentasDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visor.resx">
+      <DependentUpon>Visor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
