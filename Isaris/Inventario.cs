@@ -53,7 +53,7 @@ namespace Isaris
                 txtUnidad.Text = prod.unidad;
                 txtPrecio.Text = Math.Round(prod.precio, 2).ToString();
                 txtPrecioTerranova.Text = Math.Round(prod.precioTerranova, 2).ToString();
-                txtCodProd.Text = prod.idProd.ToString();
+                txtCodProd.Text = prod.IdProd.ToString();
             }
         }
 

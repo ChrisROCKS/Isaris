@@ -7,7 +7,7 @@ namespace Isaris
 {
     public partial class ProductQuantityForm : MetroForm
     {
-        private readonly ProductoBO productLogic = new ProductoBO();
+        private readonly ProductoBO productManager = new ProductoBO();
 
         public int ProductId { get; set; }
 
@@ -18,7 +18,7 @@ namespace Isaris
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            this.productLogic.AddQuantity(this.ProductId, Convert.ToInt32(txtQuantity.Text));
+            this.productManager.AddQuantity(this.ProductId, Convert.ToInt32(txtQuantity.Text));
             this.DialogResult = DialogResult.OK;
             MessageBox.Show("¡Cantidad actualizada!");
         }

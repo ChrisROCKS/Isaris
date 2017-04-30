@@ -1,33 +1,37 @@
-﻿using System;
-using System.Data;
-using System.Collections.Generic;
+﻿using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 using Isaris.Entities;
 using Isaris.DataAccess;
+using Isaris.DataAccess.Repositories;
+using Isaris.DataAccess.Contexts;
+using Isaris.DataAccess.Models;
+using System.Collections.Generic;
 
 namespace Isaris.BusinessLayer
 {
-    public static class FacturaBO
+    public class FacturaBO
     {
-        public static void RegistrarFacturacion(FacturaEntity invoice)
+        private readonly ProductoBO productManager;
+        private readonly InvoiceRepository invoiceRepository;
+        private readonly IsarisContext context;
+
+        public FacturaBO()
         {
-            //
-            // inicializo la transacciones
-            //
+            this.context = new IsarisContext();
+            this.invoiceRepository = new InvoiceRepository(context);
+            this.productManager = new ProductoBO();
+        }
+
+        public void RegistrarFacturacion(FacturaEntity invoice)
+        {
             using (TransactionScope scope = new TransactionScope())
             {
-                //
-                // Creo la factura y sus lineas
-                //
                 FacturaDAL.Create(invoice);
-                //
-                // Actualizo el total
-                //
 
-                FacturaDAL.UpdateTotal(invoice.idFactura, invoice.total);
+                invoice.Lineas.ForEach(x => productManager.SubtractQuantity(x.IdProd, x.Cantidad));
+
+                FacturaDAL.UpdateTotal(invoice.IdFactura, invoice.Total);
 
                 scope.Complete();
             }
@@ -35,29 +39,48 @@ namespace Isaris.BusinessLayer
         }
         public static void RegistrarCotizacion(FacturaEntity invoice)
         {
-            //
-            // inicializo la transacciones
-            //
             using (TransactionScope scope = new TransactionScope())
             {
-                //
-                // Creo la factura y sus lineas
-                //
                 FacturaDAL.Create(invoice);
-                //
-                // Actualizo el total
-                //
 
-                CotizacionDAL.UpdateTotal(invoice.idFactura, invoice.total);
+                CotizacionDAL.UpdateTotal(invoice.IdFactura, invoice.Total);
 
                 scope.Complete();
             }
-
         }
+
+        public IQueryable<Invoice> FindInvoiceById(int invoiceId)
+        {
+            return this.invoiceRepository.Filter(x => x.Id == invoiceId);
+        }
+
+        public IEnumerable<InvoiceReportModel> FindInvoiceReportById(int invoiceId)
+        {
+            return this.FindInvoiceById(invoiceId).SelectMany(i => i.InvoiceDetails, (invoice, detail) => new InvoiceReportModel
+            {
+                Address = invoice.Customer.Address,
+                ClientName = invoice.Customer.Name,
+                Date = invoice.Date,
+                Discount = invoice.Discount,
+                InvoiceId = invoice.Id,
+                Price = detail.Price,
+                ProductId = detail.ProductId,
+                ProductName = detail.Product.Name,
+                Quantity = detail.Quantity,
+                SellerName = invoice.SellerName,
+                Telephone = invoice.Customer.Telephone,
+                Total = invoice.Total,
+                Unit = detail.Unit,
+                Value = detail.Value ?? 0
+            });
+        }
+
         public static DataTable CreateDataTable()
         {
-            DataTable table = new DataTable();
-            table.TableName = "myDataTable";
+            DataTable table = new DataTable()
+            {
+                TableName = "myDataTable"
+            };
             DataColumn myColumn;
 
             myColumn = new DataColumn();

@@ -14,17 +14,17 @@ namespace Isaris.DataAccess.Models
         public int InvoiceId { get; set; }
 
         [Column("codproducto")]
-        public int? ProductId { get; set; }
+        public int ProductId { get; set; }
 
         [Column("unidad")]
         [StringLength(255)]
         public string Unit { get; set; }
 
         [Column("precio")]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         [Column("cantidad")]
-        public decimal? Quantity { get; set; }
+        public int Quantity { get; set; }
 
         [Column("valor")]
         public decimal? Value { get; set; }

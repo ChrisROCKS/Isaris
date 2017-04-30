@@ -19,8 +19,8 @@ namespace Isaris
 
         private void hacerFacturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Facturar f = new Facturar();
-            //f.Show();
+            Facturar f = new Facturar();
+            f.Show();
         }
 
         private void buscarFacturaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,13 +36,13 @@ namespace Isaris
 
         private void ventasDelDiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            VentasDia vd = new VentasDia();
-            vd.Show();
+            //VentasDia vd = new VentasDia();
+            //vd.Show();
         }
 
         private void gestionarInventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Inventario i = new Inventario();
+            StockForm i = new StockForm();
             i.Show();
         }
 

@@ -25,13 +25,13 @@ namespace Isaris.DataAccess
                 using (MySqlCommand cmd = new MySqlCommand(sqlFactura, conn))
                 {
 
-                    cmd.Parameters.AddWithValue("@idCliente", factura.idCliente);
-                    cmd.Parameters.AddWithValue("@fecha", factura.fecha);
-                    cmd.Parameters.AddWithValue("@vendedor", factura.vendedor);
-                    cmd.Parameters.AddWithValue("@descuento", factura.descuento);
+                    cmd.Parameters.AddWithValue("@idCliente", factura.IdCliente);
+                    cmd.Parameters.AddWithValue("@fecha", factura.Fecha);
+                    cmd.Parameters.AddWithValue("@vendedor", factura.Vendedor);
+                    cmd.Parameters.AddWithValue("@descuento", factura.Descuento);
                     cmd.Parameters.AddWithValue("@total", 0);
                     
-                    factura.idFactura = Convert.ToInt32(cmd.ExecuteScalar());
+                    factura.IdFactura = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
 
@@ -50,23 +50,23 @@ namespace Isaris.DataAccess
                         //
                         cmd.Parameters.Clear();
 
-                        cmd.Parameters.AddWithValue("@invoiceid", factura.idFactura);
-                        cmd.Parameters.AddWithValue("@trackid", detalle.idProd);
-                        cmd.Parameters.AddWithValue("@unitprice", detalle.precio);
-                        cmd.Parameters.AddWithValue("@quantity", detalle.cantidad);
+                        cmd.Parameters.AddWithValue("@invoiceid", factura.IdFactura);
+                        cmd.Parameters.AddWithValue("@trackid", detalle.IdProd);
+                        cmd.Parameters.AddWithValue("@unitprice", detalle.Precio);
+                        cmd.Parameters.AddWithValue("@quantity", detalle.Cantidad);
 
                         //
                         // Si bien obtenermos el id de linea de factura, este no es usado
                         // en la aplicacion
                         //
-                        detalle.idDetalle = Convert.ToInt32(cmd.ExecuteScalar());
+                        detalle.IdDetalle = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
                 }
 
             }
         }
-        public static void UpdateTotal(int idInvoice, double total)
+        public static void UpdateTotal(int idInvoice, decimal total)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {

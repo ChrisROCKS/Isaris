@@ -12,24 +12,25 @@ using Isaris.Entities;
 using Isaris.BusinessLayer;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using Microsoft.Reporting.WinForms;
 
 namespace Isaris
 {
     public partial class Facturar : MetroForm
     {
+        private readonly FacturaBO invoiceManager;
         public Facturar()
         {
+            this.invoiceManager = new FacturaBO();
             InitializeComponent();
         }
+
         ClienteEntity cliente = null;
         ProductoEntity prod = null;
         FacturaEntity fact = null;
         string campoPrecio = "precio";
         private void facturar_Load(object sender, EventArgs e)
         {
-            //Otros colores
-            //this.dgD.RowsDefaultCellStyle.BackColor = Color.Bisque;
-            //this.dgD.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
             this.dgD.RowsDefaultCellStyle.BackColor = Color.LightCyan;
             this.dgD.AlternatingRowsDefaultCellStyle.BackColor = Color.LightYellow;
 
@@ -52,16 +53,16 @@ namespace Isaris
         
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (cliente == null || txtP.Text == "")
+            if (cliente == null || txtP.Text == string.Empty)
             {
                 MessageBox.Show("Debe llenar todos los campos");
                 return;
             }
             fact = new FacturaEntity();
-            fact.fecha = DateTime.Now;
-            fact.idCliente = cliente.idCliente;
+            fact.Fecha = DateTime.Now;
+            fact.IdCliente = cliente.idCliente;
             
-            fact.vendedor = "Katherin Martinez";
+            fact.Vendedor = "Katherin Martinez";
                 
             foreach(DataGridViewRow row in dgD.Rows)
             {
@@ -69,28 +70,25 @@ namespace Isaris
 
                 if(!row.IsNewRow)
                 {
-                    //row.Cells[2].Selected = true;
-                    detalle.idProd = Convert.ToInt32(row.Cells[0].Value);
-                    detalle.cantidad = Convert.ToSingle(row.Cells[2].Value);
-                    detalle.precio = Convert.ToDouble(row.Cells[3].Value);
-                    detalle.unidad = Convert.ToString(row.Cells[4].Value);
+                    detalle.IdProd = Convert.ToInt32(row.Cells[0].Value);
+                    detalle.Cantidad = Convert.ToInt32(row.Cells[2].Value);
+                    detalle.Precio = Convert.ToDecimal(row.Cells[3].Value);
+                    detalle.Unidad = Convert.ToString(row.Cells[4].Value);
 
                     fact.Lineas.Add(detalle);
-
-                    //ProductoBO.UpdateStock(detalle.idProd,Convert.ToSingle(row.Cells[7].Value));
                 }
             }
-            fact.descuento = Convert.ToInt32(txtP.Text);
-            FacturaBO.RegistrarFacturacion(fact);
-            txtDesc.Text = fact.descuento.ToString("c");
-            txtIsv.Text = fact.isv.ToString("c");
-            txtSubtotal.Text = fact.subtotal.ToString("c");
-            txtTotal.Text = fact.total.ToString("c");
+            fact.Descuento = Convert.ToInt32(txtP.Text);
+            invoiceManager.RegistrarFacturacion(fact);
+            txtDesc.Text = fact.Descuento.ToString("c");
+            txtIsv.Text = fact.Isv.ToString("c");
+            txtSubtotal.Text = fact.Subtotal.ToString("c");
+            txtTotal.Text = fact.Total.ToString("c");
             prod = null;
             
             MessageBox.Show("Guardado");
         }
-        void buscarCliente()
+        void BuscarCliente()
         {
             try
             {
@@ -115,38 +113,18 @@ namespace Isaris
                         break;
                     case DialogResult.No: break;
                 }
-
-
-                //if(cliente.ShowDialog() == DialogResult.Yes)
-                //{
-                //    cmbCliente.DataSource = metodos.Datos("clientes");
-                //    cmbCliente.DisplayMember = "nombre";
-                //    cmbCliente.ValueMember = "codcliente";
-
-                //    cmbCliente.AutoCompleteCustomSource = metodos.Autocomplete("clientes");
-                //    cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
-                //    cmbCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                //    cmbCliente.Text = "";
-                //}
             }
         }
         private void cmbCliente_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
             {
-                buscarCliente();
+                BuscarCliente();
             }
         }
 
         private void OnlyNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (!Char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 46) // Si no es numerico y si no es espacio
-            //{
-            //    // Invalidar la accion
-            //    e.Handled = true;
-            //    // Enviar el sonido de beep de windows
-            //    //System.Media.SystemSounds.Beep.Play();
-            //}
             TextBox txt = (TextBox)sender;
             char caracter = e.KeyChar;
             if ((char.IsNumber(caracter)) || (caracter == (char)8 || (caracter == '.') && (txt.Text.Contains(".") == false)))
@@ -157,7 +135,6 @@ namespace Isaris
         }
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            //if (dgD.SelectedRows.Count == 0) return; // solucion al error de null reference exception cuando se clickear un header cell
             DataGridViewRow fila = dgD.CurrentRow;
             try
             {
@@ -168,7 +145,7 @@ namespace Isaris
                     {
                         prod = ProductoBO.GetByName(fila.Cells[1].Value.ToString(), campoPrecio);
 
-                        fila.Cells[0].Value = prod.idProd;
+                        fila.Cells[0].Value = prod.IdProd;
                         fila.Cells[1].Value = prod.nombre;
                         fila.Cells[3].Value = prod.precioTerranova;
                         fila.Cells[4].Value = prod.unidad;
@@ -185,9 +162,7 @@ namespace Isaris
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            TextBox tb = e.Control as TextBox;
-            
-            if (tb != null)
+            if (e.Control is TextBox tb)
             {
                 if (dgD.CurrentCell.ColumnIndex == 1)
                 {
@@ -227,8 +202,6 @@ namespace Isaris
             }
             porc = Convert.ToDouble(txtP.Text) / 100;
 
-            //MessageBox.Show(porc.ToString());
-
             desc = subt * porc;
             isv = subt * 0.15;
             tp = (subt + isv)-desc;
@@ -245,7 +218,6 @@ namespace Isaris
 
             if (!headerText.Equals("Cantidad")) return;
 
-            // Confirm that the cell is not empty.
             if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
             {
                 dgD.Rows[e.RowIndex].ErrorText =
@@ -261,28 +233,37 @@ namespace Isaris
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            // es la sql
-            //SELECT f.vendedor,f.fecha,f.total,d.*,c.nombre as cliente,c.direccion, i.nombre as producto
-            //FROM facturas as f, clientes as c, inventario as i,detallefactura as d
-            //WHERE f.codcliente = c.codcliente and f.codcliente =1 and d.codproducto = i.codproducto and f.codfactura =1
-            Visor v = new Visor();
-            using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
+            var viewer = new Viewer();
+
+            //using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
+            //{
+            //    conn.Open();
+
+            //    string sql = @"SELECT f.vendedor,f.fecha,f.total,d.*,f.descuento,c.nombre as cliente,c.direccion,c.telefono, i.nombre as producto 
+            //                    FROM facturas as f, clientes as c, inventario as i,detallefactura as d 
+            //                    WHERE f.codcliente = c.codcliente and d.codproducto = i.codproducto and f.codfactura = d.codfactura and f.codfactura = " + fact.IdFactura;
+
+            //    MySqlDataAdapter daFactura = new MySqlDataAdapter(sql, conn);
+
+            //    daFactura.Fill(v.dataSet11, "repfactura");
+
+            //}
+            //v.informe.Load("repFactura.rpt");
+            //v.informe.SetDataSource(v.dataSet11);
+            //v.Show();
+            var invoiceData = this.invoiceManager.FindInvoiceReportById(17);
+
+            var reportDataSource = new ReportDataSource()
             {
-                conn.Open();
-
-                string sql = @"SELECT f.vendedor,f.fecha,f.total,d.*,f.descuento,c.nombre as cliente,c.direccion,c.telefono, i.nombre as producto 
-                                FROM facturas as f, clientes as c, inventario as i,detallefactura as d 
-                                WHERE f.codcliente = c.codcliente and d.codproducto = i.codproducto and f.codfactura = d.codfactura and f.codfactura = " + fact.idFactura;
-
-                MySqlDataAdapter daFactura = new MySqlDataAdapter(sql, conn);
-                //daFactura.FillSchema(v.dataSet11, SchemaType.Source, "repfactura");
-                daFactura.Fill(v.dataSet11, "repfactura");
-
-            }
-            v.informe.Load("repFactura.rpt");
-            v.informe.SetDataSource(v.dataSet11);
-            v.Show();
-           
+                Value = invoiceData,
+                Name = "InvoiceDataSet"
+            };
+            viewer.ReportViewer.ProcessingMode = ProcessingMode.Local;
+            viewer.ReportViewer.LocalReport.ReportEmbeddedResource = "Isaris.Report.Reports.InvoiceReport.rdlc";
+            viewer.ReportViewer.LocalReport.DataSources.Add(reportDataSource);
+            viewer.ReportViewer.LocalReport.Refresh();
+            viewer.ReportViewer.Refresh();
+            viewer.Show();
         }
 
         private void metroRadioButton2_CheckedChanged(object sender, EventArgs e)
@@ -290,7 +271,7 @@ namespace Isaris
             campoPrecio = "precioTerranova";
             CargarCombo();
             cmbCliente.Text = "Ceramicas Terranova";
-            buscarCliente();
+            BuscarCliente();
         }
 
         private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)

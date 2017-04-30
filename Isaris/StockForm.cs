@@ -18,8 +18,7 @@ namespace Isaris
 {
     public partial class StockForm : MetroForm
     {
-        private ProductoBO productLogic = new ProductoBO();
-        //private ProductQuantityForm quantityForm;
+        private readonly ProductoBO productManger = new ProductoBO();
 
         public StockForm()
         {
@@ -27,7 +26,7 @@ namespace Isaris
 
             this.ProductsGrid.TableDescriptor.AllowEdit = false;
 
-            this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+            this.ProductsGrid.DataSource = this.productManger.All().ToList();
 
             var gridExcelFilter = new GridExcelFilter();
             gridExcelFilter.WireGrid(this.ProductsGrid);
@@ -51,7 +50,7 @@ namespace Isaris
 
             if (result == DialogResult.OK)
             {
-                this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+                this.ProductsGrid.DataSource = this.productManger.All().ToList();
             }
         }
 
@@ -83,14 +82,14 @@ namespace Isaris
             var form = new ProductForm
             {
                 //TopMost = true
-                Product = new Entities.ProductoEntity { idProd = Convert.ToInt32(record.GetValue("idProd")) }
+                Product = new Entities.ProductoEntity { IdProd = Convert.ToInt32(record.GetValue("idProd")) }
             };
 
             var result = form.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+                this.ProductsGrid.DataSource = this.productManger.All().ToList();
             }
         }
 
@@ -114,7 +113,7 @@ namespace Isaris
 
             if (result == DialogResult.OK)
             {
-                this.ProductsGrid.DataSource = this.productLogic.All().ToList();
+                this.ProductsGrid.DataSource = this.productManger.All().ToList();
             }
         }
     }

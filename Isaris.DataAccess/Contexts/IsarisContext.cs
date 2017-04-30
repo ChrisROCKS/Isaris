@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Isaris.DataAccess.Contexts
         public IsarisContext()
             : base("name=default")
         {
+            this.Database.Log = s => Debug.WriteLine(s);
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
@@ -42,7 +44,7 @@ namespace Isaris.DataAccess.Contexts
                 .IsUnicode(false);
 
             modelBuilder.Entity<Invoice>()
-                .Property(e => e.Seller)
+                .Property(e => e.SellerName)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Product>()

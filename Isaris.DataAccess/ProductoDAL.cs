@@ -31,7 +31,7 @@ namespace Isaris.DataAccess
 
                 if (reader.Read())
                 {
-                    prod.idProd = Convert.ToInt32(reader["codproducto"]);
+                    prod.IdProd = Convert.ToInt32(reader["codproducto"]);
                     prod.nombre = Convert.ToString(reader["nombre"]);
                     prod.proveedor = Convert.ToString(reader["proveedor"]);
                     prod.existencia = Convert.ToInt32(reader["existencia"]);
@@ -69,7 +69,7 @@ namespace Isaris.DataAccess
                 cmd.Parameters.AddWithValue("@unidad", prod.unidad);
                 cmd.Parameters.AddWithValue("@provider", prod.proveedor);
                 cmd.Parameters.AddWithValue("@precioTerranova", prod.precioTerranova);
-                cmd.Parameters.AddWithValue("@idProd", prod.idProd);
+                cmd.Parameters.AddWithValue("@idProd", prod.IdProd);
 
 
                 cmd.ExecuteNonQuery();
@@ -91,7 +91,7 @@ namespace Isaris.DataAccess
 
                 if (reader.Read())
                 {
-                    prod.idProd = Convert.ToInt32(reader["codproducto"]);
+                    prod.IdProd = Convert.ToInt32(reader["codproducto"]);
                     prod.nombre = Convert.ToString(reader["nombre"]);
                     prod.proveedor = Convert.ToString(reader["proveedor"]);
                     prod.existencia = Convert.ToInt32(reader["existencia"]);

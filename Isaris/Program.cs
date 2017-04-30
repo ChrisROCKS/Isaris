@@ -16,7 +16,7 @@ namespace Isaris
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StockForm());
+            Application.Run(new Menu());
         }
     }
 }

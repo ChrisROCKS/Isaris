@@ -14,20 +14,20 @@ namespace Isaris.DataAccess.Models
 
         [Column("codcliente")]
         [ForeignKey("Customer")]
-        public int? CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [StringLength(255)]
         [Column("vendedor")]
-        public string Seller { get; set; }
+        public string SellerName { get; set; }
 
         [Column("fecha")]
         public DateTime Date { get; set; }
 
         [Column("descuento")]
-        public decimal? Discount { get; set; }
+        public decimal Discount { get; set; }
 
         [Column("Total")]
-        public decimal? Total { get; set; }
+        public decimal Total { get; set; }
 
         public virtual Customer Customer { get; set; }
 

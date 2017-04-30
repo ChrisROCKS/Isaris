@@ -15,11 +15,12 @@ namespace Isaris.BusinessLayer
 {
     public class ProductoBO
     {
-        private readonly IsarisContext context = new IsarisContext();
+        private readonly IsarisContext context;
         private readonly BaseRepository<Product> productRepository;
 
         public ProductoBO()
         {
+            this.context = new IsarisContext();
             this.productRepository = new ProductRepository(context);
         }
 
@@ -28,7 +29,7 @@ namespace Isaris.BusinessLayer
             return this.productRepository.All().Select(x => new ProductoEntity
             {
                 existencia = x.StockQuantity,
-                idProd = x.Id,
+                IdProd = x.Id,
                 nombre = x.Name,
                 precio = x.Price,
                 precioTerranova = x.PriceTerranova ?? 0,
@@ -70,11 +71,11 @@ namespace Isaris.BusinessLayer
         }
         public void Save(ProductoEntity product)
         {
-            if (ProductoDAL.Exists(product.idProd))
+            if (ProductoDAL.Exists(product.IdProd))
             {
                 productRepository.Update(new Product
                 {
-                    Id = product.idProd,
+                    Id = product.IdProd,
                     Name = product.nombre,
                     Price = product.precio,
                     PriceTerranova = product.precioTerranova,

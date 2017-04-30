@@ -9,7 +9,7 @@ namespace Isaris
     public partial class ProductForm : MetroForm
     {
 
-        private readonly ProductoBO productLogic = new ProductoBO();
+        private readonly ProductoBO productManager = new ProductoBO();
 
         public ProductForm()
         {
@@ -45,7 +45,7 @@ namespace Isaris
                 precio = nudPrice.Value,
                 precioTerranova = nudTerranovaPrice.Value,
                 proveedor = txtProvider.Text,
-                idProd = this.Product?.idProd ?? 0
+                IdProd = this.Product?.IdProd ?? 0
             };
 
             //if (this.Product != null)
@@ -63,7 +63,7 @@ namespace Isaris
             //    MessageBox.Show("¡Producto guardado!");
             //}
 
-            this.productLogic.Save(product);
+            this.productManager.Save(product);
             metodos.Borrar(this, txtName);
             this.DialogResult = DialogResult.OK;
             MessageBox.Show("¡Producto actualizado!");
@@ -85,7 +85,7 @@ namespace Isaris
 
         private void LoadFields()
         {
-            var product = ProductoBO.GetById(this.Product.idProd);
+            var product = ProductoBO.GetById(this.Product.IdProd);
 
             this.Product = product;
 

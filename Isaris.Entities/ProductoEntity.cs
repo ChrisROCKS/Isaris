@@ -8,7 +8,7 @@ namespace Isaris.Entities
 {
     public class ProductoEntity
     {
-        public int idProd { get; set; }
+        public int IdProd { get; set; }
         public string nombre { get; set; }
         public decimal existencia { get; set; }
         public string proveedor { get; set; }
