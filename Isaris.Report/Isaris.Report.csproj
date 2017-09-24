@@ -44,9 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Reports\InvoiceReport.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Isaris.Entities\Isaris.Entities.csproj">
       <Project>{8d25cd98-d4bf-49d0-8e4b-dda830b45d6b}</Project>
       <Name>Isaris.Entities</Name>
@@ -54,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\Isaris.Entities.InvoiceReportModel.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
