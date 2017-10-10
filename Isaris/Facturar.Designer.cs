@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.dgD = new System.Windows.Forms.DataGridView();
@@ -123,8 +123,8 @@
             // Column8
             // 
             this.Column8.DataPropertyName = "codigo";
-            dataGridViewCellStyle13.NullValue = null;
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle7.NullValue = null;
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column8.HeaderText = "Código Producto";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -142,9 +142,9 @@
             // Column10
             // 
             this.Column10.DataPropertyName = "cantidad";
-            dataGridViewCellStyle14.Format = "N2";
-            dataGridViewCellStyle14.NullValue = null;
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column10.HeaderText = "Cantidad";
             this.Column10.Name = "Column10";
             this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -152,9 +152,9 @@
             // Column11
             // 
             this.Column11.DataPropertyName = "precio";
-            dataGridViewCellStyle15.Format = "C2";
-            dataGridViewCellStyle15.NullValue = null;
-            this.Column11.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle9.Format = "C2";
+            dataGridViewCellStyle9.NullValue = null;
+            this.Column11.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column11.HeaderText = "Precio";
             this.Column11.Name = "Column11";
             this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -170,9 +170,9 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "valor";
-            dataGridViewCellStyle16.Format = "C2";
-            dataGridViewCellStyle16.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle10.Format = "C2";
+            dataGridViewCellStyle10.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column1.HeaderText = "Valor";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -181,9 +181,9 @@
             // Column13
             // 
             this.Column13.DataPropertyName = "existencia";
-            dataGridViewCellStyle17.Format = "N2";
-            dataGridViewCellStyle17.NullValue = null;
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle11;
             this.Column13.HeaderText = "Existencia";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
@@ -192,9 +192,9 @@
             // Column14
             // 
             this.Column14.DataPropertyName = "nuevaExistencia";
-            dataGridViewCellStyle18.Format = "N2";
-            dataGridViewCellStyle18.NullValue = null;
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle12;
             this.Column14.HeaderText = "Nueva Existencia";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
@@ -349,9 +349,9 @@
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(117, 572);
+            this.btnCalcular.Location = new System.Drawing.Point(115, 562);
             this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(192, 57);
+            this.btnCalcular.Size = new System.Drawing.Size(192, 39);
             this.btnCalcular.Style = MetroFramework.MetroColorStyle.Red;
             this.btnCalcular.TabIndex = 21;
             this.btnCalcular.Text = "Calcular";
@@ -521,9 +521,9 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(117, 718);
+            this.metroButton2.Location = new System.Drawing.Point(115, 676);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(192, 57);
+            this.metroButton2.Size = new System.Drawing.Size(192, 39);
             this.metroButton2.Style = MetroFramework.MetroColorStyle.Red;
             this.metroButton2.TabIndex = 30;
             this.metroButton2.Text = "Imprimir comprobante de entrega";
@@ -533,9 +533,9 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(117, 645);
+            this.btnGuardar.Location = new System.Drawing.Point(115, 619);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(192, 57);
+            this.btnGuardar.Size = new System.Drawing.Size(192, 39);
             this.btnGuardar.Style = MetroFramework.MetroColorStyle.Red;
             this.btnGuardar.TabIndex = 31;
             this.btnGuardar.Text = "Registrar factura";
@@ -547,7 +547,7 @@
             // 
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel3.Location = new System.Drawing.Point(26, 592);
+            this.metroLabel3.Location = new System.Drawing.Point(25, 582);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(57, 19);
             this.metroLabel3.Style = MetroFramework.MetroColorStyle.Red;
@@ -559,7 +559,7 @@
             // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel10.Location = new System.Drawing.Point(26, 665);
+            this.metroLabel10.Location = new System.Drawing.Point(23, 639);
             this.metroLabel10.Name = "metroLabel10";
             this.metroLabel10.Size = new System.Drawing.Size(57, 19);
             this.metroLabel10.Style = MetroFramework.MetroColorStyle.Red;
@@ -571,7 +571,7 @@
             // 
             this.metroLabel11.AutoSize = true;
             this.metroLabel11.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel11.Location = new System.Drawing.Point(26, 738);
+            this.metroLabel11.Location = new System.Drawing.Point(23, 696);
             this.metroLabel11.Name = "metroLabel11";
             this.metroLabel11.Size = new System.Drawing.Size(57, 19);
             this.metroLabel11.Style = MetroFramework.MetroColorStyle.Red;
@@ -583,7 +583,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 814);
+            this.ClientSize = new System.Drawing.Size(1031, 727);
             this.Controls.Add(this.metroLabel11);
             this.Controls.Add(this.metroLabel10);
             this.Controls.Add(this.metroLabel3);
