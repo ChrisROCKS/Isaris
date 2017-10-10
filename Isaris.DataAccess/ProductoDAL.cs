@@ -156,7 +156,7 @@ namespace Isaris.DataAccess
             }
             return dt;
         }
-        public static void UpdateStock(int idProduct, float Quantity)
+        public static void UpdateStock(int idProduct, decimal Quantity)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
             {

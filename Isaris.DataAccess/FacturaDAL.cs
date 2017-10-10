@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Threading.Tasks;
 using Isaris.Entities;
 using MySql.Data.MySqlClient;
 using System.Configuration;
-using Isaris.DataAccess.Contexts;
-using Isaris.DataAccess.Repositories;
 
 namespace Isaris.DataAccess
 {
@@ -20,7 +13,7 @@ namespace Isaris.DataAccess
             {
                 conn.Open();
 
-                string sqlFactura = @"INSERT INTO facturas (codcliente, fecha, vendedor,descuento, Total) VALUES (@idCliente, @fecha, @vendedor,@descuento, @total);
+                string sqlFactura = @"INSERT INTO facturas (codcliente, fecha, vendedor,descuento, isv, total) VALUES (@idCliente, @fecha, @vendedor,@descuento, @isv, @total);
                            SELECT LAST_INSERT_ID()";
 
                 using (MySqlCommand cmd = new MySqlCommand(sqlFactura, conn))
@@ -30,6 +23,7 @@ namespace Isaris.DataAccess
                     cmd.Parameters.AddWithValue("@fecha", factura.Fecha);
                     cmd.Parameters.AddWithValue("@vendedor", factura.Vendedor);
                     cmd.Parameters.AddWithValue("@descuento", factura.Descuento);
+                    cmd.Parameters.AddWithValue("@isv", factura.Isv);
                     cmd.Parameters.AddWithValue("@total", 0);
 
                     factura.IdFactura = Convert.ToInt32(cmd.ExecuteScalar());
@@ -45,10 +39,6 @@ namespace Isaris.DataAccess
 
                     foreach (DetalleEntity detalle in factura.Lineas)
                     {
-                        //
-                        // como se reutiliza el mismo objeto SqlCommand es necesario limpiar los parametros
-                        // de la operacion previa, sino estos se iran agregando en la coleccion, generando un fallo
-                        //
                         cmd.Parameters.Clear();
 
                         cmd.Parameters.AddWithValue("@invoiceid", factura.IdFactura);
@@ -56,10 +46,6 @@ namespace Isaris.DataAccess
                         cmd.Parameters.AddWithValue("@unitprice", detalle.Precio);
                         cmd.Parameters.AddWithValue("@quantity", detalle.Cantidad);
 
-                        //
-                        // Si bien obtenermos el id de linea de factura, este no es usado
-                        // en la aplicacion
-                        //
                         detalle.IdDetalle = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 

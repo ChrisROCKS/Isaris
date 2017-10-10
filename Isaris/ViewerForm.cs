@@ -7,20 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Isaris
 {
-    public partial class Viewer : Form
+    public partial class ViewerForm : Form
     {
-        public Viewer()
+        public ViewerForm()
         {
             InitializeComponent();
         }
-
-        private void Viewer_Load(object sender, EventArgs e)
+        public ReportDocument informe = new ReportDocument();
+        private void reporte_Load(object sender, EventArgs e)
         {
-
-            this.ReportViewer.RefreshReport();
+            this.reporte.RefreshReport();
         }
     }
 }

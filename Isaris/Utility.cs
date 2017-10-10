@@ -12,7 +12,7 @@ using MetroFramework.Controls;
 
 namespace Isaris
 {
-    class metodos
+    internal class Utility
     {
         public static DataTable Datos(string tabla)
         {
@@ -51,7 +51,7 @@ namespace Isaris
                 mtxt.Clear();
             }
 
-            foreach (NumericUpDown mtxt in frm.Controls.OfType<NumericUpDown>())
+            foreach (var mtxt in frm.Controls.OfType<NumericUpDown>())
             {
                 mtxt.Value = 0;
             }

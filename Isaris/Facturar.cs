@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MetroFramework.Forms;
 using System.Windows.Forms;
 using Isaris.Entities;
 using Isaris.BusinessLayer;
-using MySql.Data.MySqlClient;
-using System.Configuration;
-using Microsoft.Reporting.WinForms;
+using Isaris.Properties;
+using System.Drawing.Printing;
+using CrystalDecisions.Shared;
 
 namespace Isaris
 {
     public partial class Facturar : MetroForm
     {
-        private readonly FacturaBO invoiceManager;
-        public Facturar()
+        private readonly InvoiceManager invoiceManager;
+        public Facturar(InvoiceManager invoiceManager)
         {
-            this.invoiceManager = new FacturaBO();
+            this.invoiceManager = invoiceManager;
             InitializeComponent();
         }
 
@@ -36,24 +30,24 @@ namespace Isaris
 
             CargarCombo();
 
-            dgD.DataSource = FacturaBO.CreateDataTable();
+            dgD.DataSource = InvoiceManager.CreateDataTable();
             
         }
         public void CargarCombo()
         {
-            cmbCliente.DataSource = metodos.Datos("clientes");
+            cmbCliente.DataSource = Utility.Datos("clientes");
             cmbCliente.DisplayMember = "nombre";
             cmbCliente.ValueMember = "codcliente";
 
-            cmbCliente.AutoCompleteCustomSource = metodos.Autocomplete("clientes");
+            cmbCliente.AutoCompleteCustomSource = Utility.Autocomplete("clientes");
             cmbCliente.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            cmbCliente.Text = "";
+            cmbCliente.Text = string.Empty;
         }
         
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (cliente == null || txtP.Text == string.Empty)
+            if (cliente == null)
             {
                 MessageBox.Show("Debe llenar todos los campos");
                 return;
@@ -61,8 +55,9 @@ namespace Isaris
             fact = new FacturaEntity();
             fact.Fecha = DateTime.Now;
             fact.IdCliente = cliente.idCliente;
-            
-            fact.Vendedor = "Katherin Martinez";
+            fact.Isv = Settings.Default.Isv;
+
+            fact.Vendedor = Settings.Default.Vendedor;
                 
             foreach(DataGridViewRow row in dgD.Rows)
             {
@@ -71,23 +66,29 @@ namespace Isaris
                 if(!row.IsNewRow)
                 {
                     detalle.IdProd = Convert.ToInt32(row.Cells[0].Value);
-                    detalle.Cantidad = Convert.ToInt32(row.Cells[2].Value);
+                    detalle.Cantidad = Convert.ToDecimal(row.Cells[2].Value);
                     detalle.Precio = Convert.ToDecimal(row.Cells[3].Value);
                     detalle.Unidad = Convert.ToString(row.Cells[4].Value);
 
                     fact.Lineas.Add(detalle);
                 }
             }
-            fact.Descuento = Convert.ToInt32(txtP.Text);
+
             invoiceManager.RegistrarFacturacion(fact);
             txtDesc.Text = fact.Descuento.ToString("c");
             txtIsv.Text = fact.Isv.ToString("c");
             txtSubtotal.Text = fact.Subtotal.ToString("c");
             txtTotal.Text = fact.Total.ToString("c");
             prod = null;
-            
-            MessageBox.Show("Guardado");
+
+            var invoiceData = this.invoiceManager.FindInvoiceReportById(fact.IdFactura);
+            var invoiceReport = new Isaris.Report.Reports.MiniInvoiceReport();
+            invoiceReport.SetDataSource(invoiceData);
+            invoiceReport.PrintToPrinter(new PrinterSettings(), new PageSettings(), false, new PrintLayoutSettings { Centered = false });
+
+            MessageBox.Show("¡La factura de registro correctamente!");
         }
+
         void BuscarCliente()
         {
             try
@@ -143,7 +144,7 @@ namespace Isaris
 
                     try
                     {
-                        prod = ProductoBO.GetByName(fila.Cells[1].Value.ToString(), campoPrecio);
+                        prod = ProductManager.GetByName(fila.Cells[1].Value.ToString(), campoPrecio);
 
                         fila.Cells[0].Value = prod.IdProd;
                         fila.Cells[1].Value = prod.nombre;
@@ -152,7 +153,7 @@ namespace Isaris
                         fila.Cells[6].Value = prod.existencia;
                     }
                     catch
-                    { MessageBox.Show("Producto no encontrado!"); }
+                    { MessageBox.Show("¡Producto no encontrado!"); }
                 }
             }
             catch
@@ -162,12 +163,14 @@ namespace Isaris
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (e.Control is TextBox tb)
+            if (e.Control is TextBox)
             {
+                var tb = e.Control as TextBox;
+
                 if (dgD.CurrentCell.ColumnIndex == 1)
                 {
                     tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    tb.AutoCompleteCustomSource = metodos.Autocomplete("inventario");
+                    tb.AutoCompleteCustomSource = Utility.Autocomplete("inventario");
                     tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 }
                 else
@@ -184,26 +187,27 @@ namespace Isaris
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
-            if (cliente == null || txtP.Text == "")
+            if (cliente == null)
             {
                 MessageBox.Show("Debe llenar todos los campos");
                 return;
             }
 
 
-            double porc = 0;
-            double desc=0;
-            double subt = 0, isv = 0, tp = 0;
+            decimal porc = 0, 
+                desc =0, 
+                subt = 0, 
+                isv = 0, 
+                tp = 0;
 
             foreach (DataGridViewRow row in dgD.Rows)
             {
                 if (!row.IsNewRow)
-                    subt += Convert.ToDouble(row.Cells[5].Value);
+                    subt += Convert.ToDecimal(row.Cells[5].Value);
             }
-            porc = Convert.ToDouble(txtP.Text) / 100;
 
             desc = subt * porc;
-            isv = subt * 0.15;
+            isv = subt * Settings.Default.Isv;
             tp = (subt + isv)-desc;
             txtSubtotal.Text = Math.Round(subt, 2).ToString("c");
             txtDesc.Text = desc.ToString("c");
@@ -214,7 +218,7 @@ namespace Isaris
 
         private void dgD_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            string headerText = dgD.Columns[e.ColumnIndex].HeaderText;
+            var headerText = dgD.Columns[e.ColumnIndex].HeaderText;
 
             if (!headerText.Equals("Cantidad")) return;
 
@@ -233,37 +237,11 @@ namespace Isaris
 
         private void btnReporte_Click(object sender, EventArgs e)
         {
-            var viewer = new Viewer();
+            var invoiceData = this.invoiceManager.FindInvoiceReportById(fact.IdFactura);
+            var invoiceReport = new Isaris.Report.Reports.MiniInvoiceReport();
+            invoiceReport.SetDataSource(invoiceData);
 
-            //using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["default"].ToString()))
-            //{
-            //    conn.Open();
-
-            //    string sql = @"SELECT f.vendedor,f.fecha,f.total,d.*,f.descuento,c.nombre as cliente,c.direccion,c.telefono, i.nombre as producto 
-            //                    FROM facturas as f, clientes as c, inventario as i,detallefactura as d 
-            //                    WHERE f.codcliente = c.codcliente and d.codproducto = i.codproducto and f.codfactura = d.codfactura and f.codfactura = " + fact.IdFactura;
-
-            //    MySqlDataAdapter daFactura = new MySqlDataAdapter(sql, conn);
-
-            //    daFactura.Fill(v.dataSet11, "repfactura");
-
-            //}
-            //v.informe.Load("repFactura.rpt");
-            //v.informe.SetDataSource(v.dataSet11);
-            //v.Show();
-            var invoiceData = this.invoiceManager.FindInvoiceReportById(17);
-
-            var reportDataSource = new ReportDataSource()
-            {
-                Value = invoiceData,
-                Name = "InvoiceDataSet"
-            };
-            viewer.ReportViewer.ProcessingMode = ProcessingMode.Local;
-            viewer.ReportViewer.LocalReport.ReportEmbeddedResource = "Isaris.Report.Reports.InvoiceReport.rdlc";
-            viewer.ReportViewer.LocalReport.DataSources.Add(reportDataSource);
-            viewer.ReportViewer.LocalReport.Refresh();
-            viewer.ReportViewer.Refresh();
-            viewer.Show();
+            invoiceReport.PrintToPrinter(new PrinterSettings(), new PageSettings(), false, new PrintLayoutSettings { Centered = false });
         }
 
         private void metroRadioButton2_CheckedChanged(object sender, EventArgs e)
@@ -282,13 +260,18 @@ namespace Isaris
             txtTel.Clear();
         }
 
-        private void txtP_KeyPress(object sender, KeyPressEventArgs e)
+        private void metroButton1_Click(object sender, EventArgs e)
         {
-            char caracter = e.KeyChar;
-            if ((char.IsNumber(caracter)) || (caracter == (char)8 || (caracter == '.') && (txtP.Text.Contains(".") == false)))
-                e.Handled = false;
-            else
-                e.Handled = true;
+            Utility.Borrar(this, cmbCliente);
+            dgD.DataSource = InvoiceManager.CreateDataTable();
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            var invoiceReport = new Report.Reports.DeliveryProofReport();
+            var invoiceData = this.invoiceManager.FindInvoiceReportById(fact.IdFactura);
+            invoiceReport.SetDataSource(invoiceData);
+            invoiceReport.PrintToPrinter(new PrinterSettings(), new PageSettings(), false, new PrintLayoutSettings { Centered = false });
         }
     }
 }

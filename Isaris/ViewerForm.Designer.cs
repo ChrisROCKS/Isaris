@@ -1,6 +1,6 @@
 ﻿namespace Isaris
 {
-    partial class Visor
+    partial class ViewerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@
             this.reporte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reporte.Location = new System.Drawing.Point(0, 0);
             this.reporte.Name = "reporte";
-            this.reporte.Size = new System.Drawing.Size(639, 448);
+            this.reporte.Size = new System.Drawing.Size(785, 508);
             this.reporte.TabIndex = 0;
             this.reporte.Load += new System.EventHandler(this.reporte_Load);
             // 
@@ -50,13 +50,14 @@
             this.dataSet11.DataSetName = "DataSet1";
             this.dataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // Visor
+            // ViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 448);
+            this.ClientSize = new System.Drawing.Size(785, 508);
             this.Controls.Add(this.reporte);
-            this.Name = "Visor";
+            this.Name = "ViewerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Visor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).EndInit();

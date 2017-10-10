@@ -10,22 +10,20 @@ using System.Collections.Generic;
 
 namespace Isaris.BusinessLayer
 {
-    public class FacturaBO
+    public class InvoiceManager
     {
-        private readonly ProductoBO productManager;
-        private readonly InvoiceRepository invoiceRepository;
-        private readonly IsarisContext context;
+        private readonly ProductManager productManager;
+        private readonly BaseRepository<Invoice> invoiceRepository;
 
-        public FacturaBO()
+        public InvoiceManager(ProductManager productManager, BaseRepository<Invoice> invoiceRepository)
         {
-            this.context = new IsarisContext();
-            this.invoiceRepository = new InvoiceRepository(context);
-            this.productManager = new ProductoBO();
+            this.invoiceRepository = invoiceRepository;
+            this.productManager = productManager;
         }
 
         public void RegistrarFacturacion(FacturaEntity invoice)
         {
-            using (TransactionScope scope = new TransactionScope())
+            using (var scope = new TransactionScope())
             {
                 FacturaDAL.Create(invoice);
 
@@ -70,9 +68,9 @@ namespace Isaris.BusinessLayer
                 SellerName = invoice.SellerName,
                 Telephone = invoice.Customer.Telephone,
                 Total = invoice.Total,
-                Unit = detail.Unit,
-                Value = detail.Value ?? 0
-            });
+                Isv = invoice.Isv,
+                Unit = detail.Unit
+            }).ToList();
         }
 
         public static DataTable CreateDataTable()

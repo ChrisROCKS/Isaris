@@ -9,17 +9,16 @@ namespace Isaris
     public partial class ProductForm : MetroForm
     {
 
-        private readonly ProductoBO productManager = new ProductoBO();
+        private readonly ProductManager productManager;
 
-        public ProductForm()
+        public ProductForm(ProductManager productManager)
         {
+            this.productManager = productManager;
+
             InitializeComponent();
 
             this.nudPrice.Maximum = decimal.MaxValue;
             this.nudPrice.Minimum = 0;
-
-            this.nudTerranovaPrice.Maximum = decimal.MaxValue;
-            this.nudTerranovaPrice.Minimum = 0;
 
             this.nudQuantity.Maximum = int.MaxValue;
             this.nudQuantity.Minimum = 0;
@@ -43,28 +42,12 @@ namespace Isaris
                 existencia = nudQuantity.Value,
                 nombre = txtName.Text,
                 precio = nudPrice.Value,
-                precioTerranova = nudTerranovaPrice.Value,
                 proveedor = txtProvider.Text,
                 IdProd = this.Product?.IdProd ?? 0
             };
 
-            //if (this.Product != null)
-            //{
-            //    ProductoBO.Update(product);
-            //    metodos.Borrar(this, txtName);
-            //    this.DialogResult = DialogResult.OK;
-            //    MessageBox.Show("¡Producto actualizado!");
-            //}
-            //else
-            //{
-            //    ProductoBO.Create(product);
-            //    metodos.Borrar(this, txtName);
-            //    this.DialogResult = DialogResult.OK;
-            //    MessageBox.Show("¡Producto guardado!");
-            //}
-
             this.productManager.Save(product);
-            metodos.Borrar(this, txtName);
+            Utility.Borrar(this, txtName);
             this.DialogResult = DialogResult.OK;
             MessageBox.Show("¡Producto actualizado!");
         }
@@ -79,13 +62,12 @@ namespace Isaris
             this.txtName.Enabled = false;
             this.nudPrice.Enabled = false;
             this.txtProvider.Enabled = false;
-            this.nudTerranovaPrice.Enabled = false;
             this.nudQuantity.Enabled = false;
         }
 
         private void LoadFields()
         {
-            var product = ProductoBO.GetById(this.Product.IdProd);
+            var product = ProductManager.GetById(this.Product.IdProd);
 
             this.Product = product;
 
@@ -93,7 +75,6 @@ namespace Isaris
             txtProvider.Text = product.proveedor;
             nudPrice.Value = product.precio;
             nudQuantity.Value = product.existencia;
-            nudTerranovaPrice.Value = product.precioTerranova;
         }
     }
 }

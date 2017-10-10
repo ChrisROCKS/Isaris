@@ -1,27 +1,20 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Isaris.DataAccess;
 using Isaris.Entities;
-using System.Windows.Forms;
 using Isaris.DataAccess.Repositories;
 using Isaris.DataAccess.Models;
-using Isaris.DataAccess.Contexts;
 
 namespace Isaris.BusinessLayer
 {
-    public class ProductoBO
+    public class ProductManager
     {
-        private readonly IsarisContext context;
         private readonly BaseRepository<Product> productRepository;
 
-        public ProductoBO()
+        public ProductManager(BaseRepository<Product> productRepository)
         {
-            this.context = new IsarisContext();
-            this.productRepository = new ProductRepository(context);
+            this.productRepository = productRepository;
         }
 
         public IEnumerable<ProductoEntity> All()
@@ -32,7 +25,6 @@ namespace Isaris.BusinessLayer
                 IdProd = x.Id,
                 nombre = x.Name,
                 precio = x.Price,
-                precioTerranova = x.PriceTerranova ?? 0,
                 proveedor = x.Provider,
                 unidad = x.Unit
 
@@ -49,7 +41,7 @@ namespace Isaris.BusinessLayer
             return ProductoDAL.Create(prod);
         }
 
-        public void AddQuantity(int productId, int newQuantity)
+        public void AddQuantity(int productId, decimal newQuantity)
         {
             var product = this.productRepository.FirstOrDefault(x => x.Id == productId);
             product.StockQuantity += newQuantity;
@@ -57,7 +49,7 @@ namespace Isaris.BusinessLayer
             this.productRepository.SaveChanges();
         }
 
-        public void SubtractQuantity(int productId, int newQuantity)
+        public void SubtractQuantity(int productId, decimal newQuantity)
         {
             var product = this.productRepository.FirstOrDefault(x => x.Id == productId);
             product.StockQuantity -= newQuantity;
@@ -65,7 +57,7 @@ namespace Isaris.BusinessLayer
             this.productRepository.SaveChanges();
         }
 
-        public static void UpdateStock(int idProd, int Quantity)
+        public static void UpdateStock(int idProd, decimal Quantity)
         {
             ProductoDAL.UpdateStock(idProd, Quantity);
         }
@@ -80,7 +72,6 @@ namespace Isaris.BusinessLayer
                     Price = product.precio,
                     PriceTerranova = product.precioTerranova,
                     Provider = product.proveedor,
-                    StockQuantity = product.existencia,
                     Unit = product.unidad
                 });
                 productRepository.SaveChanges();

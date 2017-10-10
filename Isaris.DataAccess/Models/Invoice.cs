@@ -26,9 +26,12 @@ namespace Isaris.DataAccess.Models
         [Column("descuento")]
         public decimal Discount { get; set; }
 
-        [Column("Total")]
-        public decimal Total { get; set; }
+        [Column("isv")]
+        public decimal Isv { get; set; }
 
+        [Column("total")]
+        public decimal Total { get; set; }
+        
         public virtual Customer Customer { get; set; }
 
         public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }

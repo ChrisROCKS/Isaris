@@ -14,7 +14,7 @@ namespace Isaris.DataAccess.Contexts
         public IsarisContext()
             : base("name=default")
         {
-            this.Database.Log = s => Debug.WriteLine(s);
+            this.Database.Log += s => Debug.WriteLine(s);
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
@@ -27,37 +27,8 @@ namespace Isaris.DataAccess.Contexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
+            modelBuilder.Properties<string>().Configure(x => x.IsUnicode(false));
 
-            modelBuilder.Entity<Customer>()
-                .Property(e => e.Address)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Customer>()
-                .Property(e => e.Telephone)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<InvoiceDetail>()
-                .Property(e => e.Unit)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Invoice>()
-                .Property(e => e.SellerName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .Property(e => e.Provider)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Product>()
-                .Property(e => e.Unit)
-                .IsUnicode(false);
         }
     }
 }

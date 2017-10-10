@@ -19,6 +19,7 @@ namespace Isaris.Entities
         public string Vendedor { get; set; }
         public DateTime Fecha { get; set; }
         public List<DetalleEntity> Lineas { get; set; }
+        private decimal isv;
 
         public decimal Subtotal => this.Lineas.Sum(x => x.Precio * x.Cantidad); public decimal Descuento
         {
@@ -33,14 +34,15 @@ namespace Isaris.Entities
         }
         public decimal Isv
         {
-            get { return Subtotal * Convert.ToDecimal(0.15); }
+            get { return this.Subtotal * this.isv; }
+            set { this.isv = value; }
         }
 
         public decimal Total
         {
-            get { return (Subtotal + Isv)-Descuento; }
+            get { return (Subtotal + this.Isv) - Descuento; }
         }
 
-        public decimal Porcentaje { get => porcentaje; set => porcentaje = value; }
+        public decimal Porcentaje { get; set; }
     }
 }

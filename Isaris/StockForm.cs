@@ -1,5 +1,4 @@
 ﻿using Isaris.BusinessLayer;
-using Isaris.BusinessLayer.Utilities;
 using MetroFramework.Forms;
 using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
@@ -18,11 +17,26 @@ namespace Isaris
 {
     public partial class StockForm : MetroForm
     {
-        private readonly ProductoBO productManger = new ProductoBO();
+        private readonly ProductManager productManger;
+        private readonly FormFactory formFactory;
 
-        public StockForm()
+        public StockForm(ProductManager productManger, FormFactory formFactory)
         {
+            this.formFactory = formFactory;
+            this.productManger = productManger;
+
             InitializeComponent();
+
+            this.ProductsGrid.TableDescriptor.Columns.AddRange(
+                    new[]
+                    {
+                        new GridColumnDescriptor("IdProd", "IdProd", "Id"),
+                        new GridColumnDescriptor("nombre", "nombre", "Nombre"),
+                        new GridColumnDescriptor("existencia", "existencia", "Existencia"),
+                        new GridColumnDescriptor("proveedor", "proveedor", "Proveedor"),
+                        new GridColumnDescriptor("precio", "precio", "Precio")
+                    }
+                );
 
             this.ProductsGrid.TableDescriptor.AllowEdit = false;
 
@@ -42,10 +56,7 @@ namespace Isaris
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            var form = new ProductForm
-            {
-                //TopMost = true
-            };
+            var form = formFactory.Create<ProductForm>();
             var result = form.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -79,11 +90,8 @@ namespace Isaris
 
         private void ShowEditWindow(Record record)
         {
-            var form = new ProductForm
-            {
-                //TopMost = true
-                Product = new Entities.ProductoEntity { IdProd = Convert.ToInt32(record.GetValue("idProd")) }
-            };
+            var form = formFactory.Create<ProductForm>();
+            form.Product = new Entities.ProductoEntity {IdProd = Convert.ToInt32(record.GetValue("IdProd"))};
 
             var result = form.ShowDialog();
 
@@ -103,11 +111,9 @@ namespace Isaris
                 return;
             }
 
-            var quantityForm = new ProductQuantityForm
-            {
-                ProductId = Convert.ToInt32(record.GetValue("idProd")),
-                //TopMost = true;
-            };
+            var quantityForm = formFactory.Create<ProductQuantityForm>();
+            quantityForm.ProductId = Convert.ToInt32(record.GetValue("IdProd"));
+            //TopMost = true;
 
             var result = quantityForm.ShowDialog();
 

@@ -33,7 +33,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(91, 192);
+            this.metroButton1.Location = new System.Drawing.Point(91, 101);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(120, 53);
             this.metroButton1.TabIndex = 0;
@@ -45,9 +45,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 300);
+            this.ClientSize = new System.Drawing.Size(300, 207);
             this.Controls.Add(this.metroButton1);
+            this.MaximizeBox = false;
             this.Name = "VentasDia";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Ventas del dia";
             this.ResumeLayout(false);
 

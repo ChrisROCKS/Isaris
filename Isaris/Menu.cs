@@ -1,32 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Isaris
 {
     public partial class Menu : Form
     {
-        public Menu()
+        private readonly FormFactory formFactory;
+
+        public Menu(FormFactory formFactory)
         {
+            this.formFactory = formFactory;
+
             InitializeComponent();
         }
 
         private void hacerFacturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Facturar f = new Facturar();
-            f.Show();
+            var form = this.formFactory.Create<Facturar>();
+            form.Show();
         }
 
         private void buscarFacturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //BuscarFact b = new BuscarFact();
-            //b.Show();
+            var form = this.formFactory.Create<FindInvoiceForm>();
+            form.Show();
         }
 
         private void salirDelProgramaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,20 +33,20 @@ namespace Isaris
 
         private void ventasDelDiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //VentasDia vd = new VentasDia();
-            //vd.Show();
+            VentasDia vd = new VentasDia();
+            vd.Show();
         }
 
         private void gestionarInventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            StockForm i = new StockForm();
-            i.Show();
+            var form = this.formFactory.Create<StockForm>();
+
+            form.Show();
         }
 
-        private void metroTile1_Click(object sender, EventArgs e)
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Ajustes ajus = new Ajustes();
-            ajus.Show();
+            Application.Exit();
         }
     }
 }

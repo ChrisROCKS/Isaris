@@ -6,7 +6,7 @@ namespace Isaris.Entities
     {
         public int ProductId { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         public string Unit { get; set; }
 
@@ -26,9 +26,11 @@ namespace Isaris.Entities
 
         public string ProductName { get; set; }
 
-        public decimal Value { get; set; }
+        public decimal Value => this.Price * Quantity;
 
         public decimal Discount { get; set; }
+
+        public decimal Isv { get; set; }
 
         public decimal Total { get; set; }
 

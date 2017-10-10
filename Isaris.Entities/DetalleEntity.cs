@@ -11,7 +11,7 @@ namespace Isaris.Entities
         public int IdDetalle { get; set; }
         public int IdFactura { get; set; }
         public int IdProd { get; set; }
-        public int Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
         public string Unidad { get; set; }
         public decimal Precio { get; set; }
         public decimal Valor { set; get; }

@@ -24,7 +24,7 @@ namespace Isaris.DataAccess.Models
         public decimal Price { get; set; }
 
         [Column("cantidad")]
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         [Column("valor")]
         public decimal? Value { get; set; }

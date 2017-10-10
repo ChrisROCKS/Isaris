@@ -7,12 +7,13 @@ namespace Isaris
 {
     public partial class ProductQuantityForm : MetroForm
     {
-        private readonly ProductoBO productManager = new ProductoBO();
+        private readonly ProductManager productManager;
 
         public int ProductId { get; set; }
 
-        public ProductQuantityForm()
+        public ProductQuantityForm(ProductManager productManager)
         {
+            this.productManager = productManager;
             InitializeComponent();
         }
 
