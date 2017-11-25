@@ -48,5 +48,12 @@ namespace Isaris
         {
             Application.Exit();
         }
+
+        private void ventasPorFechaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = this.formFactory.Create<SalesByDateForm>();
+            form.Show();
+
+        }
     }
 }

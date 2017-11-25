@@ -117,10 +117,7 @@ namespace Isaris
 
             var result = quantityForm.ShowDialog();
 
-            if (result == DialogResult.OK)
-            {
-                this.ProductsGrid.DataSource = this.productManger.All().ToList();
-            }
+            this.ProductsGrid.DataSource = this.productManger.All().ToList();
         }
     }
 }

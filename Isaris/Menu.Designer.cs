@@ -46,6 +46,7 @@
             this.ventasDelDiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarInventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasPorFechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(121, 30);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -85,7 +86,8 @@
             this.facturasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.crearFacturaToolStripMenuItem,
             this.buscarFacturaToolStripMenuItem1,
-            this.ventasDelDíaToolStripMenuItem});
+            this.ventasDelDíaToolStripMenuItem,
+            this.ventasPorFechaToolStripMenuItem});
             this.facturasToolStripMenuItem.Name = "facturasToolStripMenuItem";
             this.facturasToolStripMenuItem.Size = new System.Drawing.Size(93, 29);
             this.facturasToolStripMenuItem.Text = "Facturas";
@@ -93,21 +95,21 @@
             // crearFacturaToolStripMenuItem
             // 
             this.crearFacturaToolStripMenuItem.Name = "crearFacturaToolStripMenuItem";
-            this.crearFacturaToolStripMenuItem.Size = new System.Drawing.Size(204, 30);
+            this.crearFacturaToolStripMenuItem.Size = new System.Drawing.Size(225, 30);
             this.crearFacturaToolStripMenuItem.Text = "Crear factura";
             this.crearFacturaToolStripMenuItem.Click += new System.EventHandler(this.hacerFacturaToolStripMenuItem_Click);
             // 
             // buscarFacturaToolStripMenuItem1
             // 
             this.buscarFacturaToolStripMenuItem1.Name = "buscarFacturaToolStripMenuItem1";
-            this.buscarFacturaToolStripMenuItem1.Size = new System.Drawing.Size(204, 30);
+            this.buscarFacturaToolStripMenuItem1.Size = new System.Drawing.Size(225, 30);
             this.buscarFacturaToolStripMenuItem1.Text = "Buscar factura";
             this.buscarFacturaToolStripMenuItem1.Click += new System.EventHandler(this.buscarFacturaToolStripMenuItem_Click);
             // 
             // ventasDelDíaToolStripMenuItem
             // 
             this.ventasDelDíaToolStripMenuItem.Name = "ventasDelDíaToolStripMenuItem";
-            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(204, 30);
+            this.ventasDelDíaToolStripMenuItem.Size = new System.Drawing.Size(225, 30);
             this.ventasDelDíaToolStripMenuItem.Text = "Ventas del día";
             this.ventasDelDíaToolStripMenuItem.Click += new System.EventHandler(this.ventasDelDiaToolStripMenuItem_Click);
             // 
@@ -184,6 +186,13 @@
             this.gestionarInventarioToolStripMenuItem.Text = "Gestionar productos";
             this.gestionarInventarioToolStripMenuItem.Click += new System.EventHandler(this.gestionarInventarioToolStripMenuItem_Click);
             // 
+            // ventasPorFechaToolStripMenuItem
+            // 
+            this.ventasPorFechaToolStripMenuItem.Name = "ventasPorFechaToolStripMenuItem";
+            this.ventasPorFechaToolStripMenuItem.Size = new System.Drawing.Size(225, 30);
+            this.ventasPorFechaToolStripMenuItem.Text = "Ventas por fecha";
+            this.ventasPorFechaToolStripMenuItem.Click += new System.EventHandler(this.ventasPorFechaToolStripMenuItem_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,5 +234,6 @@
         private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gestionarInventarioToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ventasPorFechaToolStripMenuItem;
     }
 }

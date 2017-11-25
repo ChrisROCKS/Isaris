@@ -228,6 +228,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesByDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesByDateForm.Designer.cs">
+      <DependentUpon>SalesByDateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TopBottonProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductQuantityForm.resx">
       <DependentUpon>ProductQuantityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesByDateForm.resx">
+      <DependentUpon>SalesByDateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TopBottonProductsForm.resx">
       <DependentUpon>TopBottonProductsForm.cs</DependentUpon>

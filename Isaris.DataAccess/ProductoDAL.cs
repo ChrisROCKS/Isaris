@@ -37,7 +37,6 @@ namespace Isaris.DataAccess
                     prod.existencia = Convert.ToInt32(reader["existencia"]);
 
                     prod.unidad = Convert.ToString(reader["unidad"]);
-                    prod.precioTerranova = Convert.ToDecimal(reader["precioTerranova"]);
                     prod.precio = Convert.ToDecimal(reader["precio"]);
                 }
 

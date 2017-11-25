@@ -21,7 +21,6 @@ namespace Isaris
         {
             this.productManager.AddQuantity(this.ProductId, Convert.ToInt32(txtQuantity.Text));
             this.DialogResult = DialogResult.OK;
-            MessageBox.Show("¡Cantidad actualizada!");
         }
 
         private void ProductQuantityForm_FormClosing(object sender, FormClosingEventArgs e)
